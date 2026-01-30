@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://player_attack_marker.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://stats.gd" id="3_i3pqv"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
+size = Vector2(32, 32)
+
 [node name="Player" type="CharacterBody2D" unique_id=1304335232]
 script = ExtResource("1_4flbx")
 
@@ -21,5 +24,28 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_onrkg")
 offset = Vector2(360, 0)
 
-[node name="Stats" type="Node" parent="." unique_id=1000196486]
+[node name="Stats" type="Node2D" parent="." unique_id=1888663571]
 script = ExtResource("3_i3pqv")
+
+[node name="HealthBar" type="ProgressBar" parent="Stats" unique_id=1608834573]
+modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(64, 16)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=550110256]
+shape = SubResource("RectangleShape2D_hqtel")

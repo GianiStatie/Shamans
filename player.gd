@@ -14,6 +14,10 @@ enum PLAYER_CONTROLS {
 @onready var cast_marker = $AttackMarker
 
 
+func _ready() -> void:
+	pass
+
+
 func _physics_process(delta: float) -> void:
 	var cast_angle = (get_global_mouse_position() - global_position).angle()
 	var diff = wrapf(cast_angle - cast_marker.rotation, -PI, PI)
