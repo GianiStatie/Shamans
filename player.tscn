@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bfl3i068uxjtu"]
+
+[ext_resource type="Script" uid="uid://hr2tlaex2bi8" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://bvhcuowxrh0te" path="res://icon.svg" id="2_onrkg"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1304335232]
+script = ExtResource("1_4flbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=33259906]
+scale = Vector2(0.3125, 0.3125)
+texture = ExtResource("2_onrkg")
+
+[node name="CastMarker" type="Marker2D" parent="." unique_id=1532841016]
+
+[node name="CastSprite" type="Sprite2D" parent="CastMarker" unique_id=1406884523]
+self_modulate = Color(0, 18.892157, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_onrkg")
+offset = Vector2(360, 0)
