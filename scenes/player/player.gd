@@ -1,21 +1,39 @@
 extends CharacterBody2D
 
-enum PLAYER_CONTROLS {
+enum PLAYERS {
 	PLAYER_1,
 	PLAYER_2
 }
 
+# PLAYER STATS
 @export var MOVE_MAX_SPEED := 200.0
 @export var MOVE_ACCELERATION := 500.0
 @export var MOVE_FRICTION := 1000.0
 @export var TURN_ACCELERATION = 10.0
-@export var PLAYER_CONTROLLER: PLAYER_CONTROLS = PLAYER_CONTROLS.PLAYER_1
+@export var PLAYER_CONTROLLER: PLAYERS = PLAYERS.PLAYER_1
+
+# PLAYER SPELLS
+@export var spell_0_scene: PackedScene
 
 @onready var cast_marker = $AttackMarker
 
 
+
 func _ready() -> void:
+	# TODO: change collision layer based on player index
 	pass
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
+		var spell_position = cast_marker.get_attack_position()
+		var spell_angle = cast_marker.get_attack_rotation()
+		var spell_direction = global_position.direction_to(spell_position)
+		var object = Utils.instantiate_object_in_scene(spell_0_scene)
+		object.cast(spell_position, spell_direction, spell_angle)
+		print("cast_0")
+	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
+		print("cast_1")
 
 
 func _physics_process(delta: float) -> void:

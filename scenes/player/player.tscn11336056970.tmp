@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://bfl3i068uxjtu"]
 
-[ext_resource type="Script" uid="uid://hr2tlaex2bi8" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://hr2tlaex2bi8" path="res://scenes/player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://bvhcuowxrh0te" path="res://icon.svg" id="2_onrkg"]
-[ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://player_attack_marker.gd" id="3_hqtel"]
-[ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://stats.gd" id="3_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/fireball.tscn" id="2_p47bc"]
+[ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://scenes/player/player_attack_marker.gd" id="3_hqtel"]
+[ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
 size = Vector2(32, 32)
 
 [node name="Player" type="CharacterBody2D" unique_id=1304335232]
 script = ExtResource("1_4flbx")
+spell_0_scene = ExtResource("2_p47bc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=33259906]
 scale = Vector2(0.3125, 0.3125)
