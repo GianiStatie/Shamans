@@ -6,17 +6,21 @@ enum PLAYERS {
 }
 
 # PLAYER STATS
-@export var MOVE_MAX_SPEED := 200.0
-@export var MOVE_ACCELERATION := 500.0
-@export var MOVE_FRICTION := 1000.0
-@export var TURN_ACCELERATION = 10.0
+@export var MOVE_MAX_SPEED := 200.0 * 0.69
+@export var MOVE_ACCELERATION := 500.0 * 0.69
+@export var MOVE_FRICTION := 1000.0 * 0.69
+@export var TURN_ACCELERATION = 10.0 
 @export var PLAYER_CONTROLLER: PLAYERS = PLAYERS.PLAYER_1
 
 # PLAYER SPELLS
 @export var spell_0_scene: PackedScene
 
 @onready var cast_marker = $AttackMarker
+@onready var flippable_container = $Flippable
+@onready var animation_player = $AnimationPlayer
 
+
+var input_vector = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -45,7 +49,7 @@ func _physics_process(delta: float) -> void:
 		TURN_ACCELERATION * delta
 	)
 	
-	var input_vector := Vector2(
+	input_vector = Vector2(
 		Input.get_axis("player_%s_left" % PLAYER_CONTROLLER, "player_%s_right" % PLAYER_CONTROLLER),
 		Input.get_axis("player_%s_up" % PLAYER_CONTROLLER, "player_%s_down" % PLAYER_CONTROLLER)
 	).normalized()
@@ -55,4 +59,22 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(target_velocity, MOVE_ACCELERATION * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, MOVE_FRICTION * delta)
+	
+	if velocity == Vector2.ZERO:
+		animation_player.play("Idle")
+	else:
+		animation_player.play("Move")
+	
+	update_facing_direction()
 	move_and_slide()
+
+
+func update_facing_direction() -> void:
+	var facing_direction = sign(input_vector.x)
+	if facing_direction != 0:
+		flippable_container.scale.x = facing_direction
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Spell"):
+		var impact_direction = area.global_position.direction_to(self.global_position)

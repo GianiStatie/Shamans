@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bfl3i068uxjtu" path="res://scenes/player/player.tscn" id="1_ig7tw"]
 
 [node name="Main" type="Node2D" unique_id=226985260]
+y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=1304335232 instance=ExtResource("1_ig7tw")]
 position = Vector2(171, 60)
@@ -10,3 +11,7 @@ position = Vector2(171, 60)
 [node name="Player2" parent="." unique_id=783978056 instance=ExtResource("1_ig7tw")]
 position = Vector2(413, 129)
 PLAYER_CONTROLLER = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1636683370]
+position = Vector2(329, 108)
+zoom = Vector2(2, 2)

@@ -1,7 +1,9 @@
 class_name Spell
 extends Area2D
 
-const MAX_SPEED: float = 300
+const MAX_SPEED: float = 200
+const KNOCKBACK: float = 100
+
 var direction := Vector2.ZERO
 
 func cast(cast_global_position: Vector2, cast_direction: Vector2, cast_rotation: float) -> void:
@@ -16,10 +18,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	print('byeee')
 	queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print("can't touch this")
 	queue_free()
