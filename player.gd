@@ -9,9 +9,9 @@ enum PLAYER_CONTROLS {
 @export var MOVE_ACCELERATION := 500.0
 @export var MOVE_FRICTION := 1000.0
 @export var TURN_ACCELERATION = 10.0
-@export var PLAYER_CONTROLLER: PLAYER_CONTROLS = 0
+@export var PLAYER_CONTROLLER: PLAYER_CONTROLS = PLAYER_CONTROLS.PLAYER_1
 
-@onready var cast_marker = $CastMarker
+@onready var cast_marker = $AttackMarker
 
 
 func _physics_process(delta: float) -> void:
@@ -24,12 +24,11 @@ func _physics_process(delta: float) -> void:
 	)
 	
 	var input_vector := Vector2(
-		Input.get_axis("player_left", "player_right"),
-		Input.get_axis("player_up", "player_down")
+		Input.get_axis("player_%s_left" % PLAYER_CONTROLLER, "player_%s_right" % PLAYER_CONTROLLER),
+		Input.get_axis("player_%s_up" % PLAYER_CONTROLLER, "player_%s_down" % PLAYER_CONTROLLER)
 	).normalized()
 	
 	var target_velocity = input_vector * MOVE_MAX_SPEED
-
 	if input_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(target_velocity, MOVE_ACCELERATION * delta)
 	else:

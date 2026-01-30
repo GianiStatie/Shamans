@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://hr2tlaex2bi8" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://bvhcuowxrh0te" path="res://icon.svg" id="2_onrkg"]
+[ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://player_attack_marker.gd" id="3_hqtel"]
+[ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://stats.gd" id="3_i3pqv"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1304335232]
 script = ExtResource("1_4flbx")
@@ -10,10 +12,14 @@ script = ExtResource("1_4flbx")
 scale = Vector2(0.3125, 0.3125)
 texture = ExtResource("2_onrkg")
 
-[node name="CastMarker" type="Marker2D" parent="." unique_id=1532841016]
+[node name="AttackMarker" type="Marker2D" parent="." unique_id=1532841016]
+script = ExtResource("3_hqtel")
 
-[node name="CastSprite" type="Sprite2D" parent="CastMarker" unique_id=1406884523]
+[node name="Sprite" type="Sprite2D" parent="AttackMarker" unique_id=1406884523]
 self_modulate = Color(0, 18.892157, 0, 1)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_onrkg")
 offset = Vector2(360, 0)
+
+[node name="Stats" type="Node" parent="." unique_id=1000196486]
+script = ExtResource("3_i3pqv")
