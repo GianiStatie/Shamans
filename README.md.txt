@@ -12,4 +12,4 @@
 - [ ] add anivia wall
 - [x] add shrinking arena
 - [x] lava deals damage
-- [ ] spells deal damage
+- [x] spells deal damage

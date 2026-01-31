@@ -41,8 +41,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnao3"]
 
 [node name="Fireball" unique_id=1366827963 instance=ExtResource("1_ql5qc")]
+collision_layer = 16
 script = ExtResource("1_olwj8")
 MAX_SPEED = 300.0
+DAMAGE = 5.0
 on_hit_effect = ExtResource("2_fnao3")
 velocity_curve = SubResource("Curve_wk21o")
 

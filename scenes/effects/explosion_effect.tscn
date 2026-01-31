@@ -47,6 +47,7 @@ animations = [{
 }]
 
 [node name="ExplosionEffect" unique_id=1538342731 instance=ExtResource("1_5ssc0")]
+DAMAGE = 5.0
 
 [node name="ExplosionEffect" parent="." index="1" unique_id=174993004]
 sprite_frames = SubResource("SpriteFrames_52shv")

@@ -107,6 +107,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			return
 		var impact_direction = area.global_position.direction_to(self.global_position)
 		velocity += impact_direction * area.KNOCKBACK
+		stats.health -= area.DAMAGE
 		state_machine.transition_to("Hit")
 
 
