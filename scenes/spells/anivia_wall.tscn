@@ -21,6 +21,11 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1vp7"]
 size = Vector2(32, 32)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k5edl"]
+random_pitch = 1.0776709
+streams_count = 1
+stream_0/stream = ExtResource("4_k5edl")
+
 [node name="AniviaWall" unique_id=1366827963 instance=ExtResource("1_nbc8x")]
 collision_layer = 64
 collision_mask = 31
@@ -67,9 +72,10 @@ collision_mask = 15
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D-Wall" index="0" unique_id=458044561]
 shape = SubResource("RectangleShape2D_p1vp7")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8" unique_id=1536324295]
-stream = ExtResource("4_k5edl")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="8" unique_id=232897345]
+stream = SubResource("AudioStreamRandomizer_k5edl")
 autoplay = true
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
