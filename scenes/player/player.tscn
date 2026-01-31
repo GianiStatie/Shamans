@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://buds2vedk7cyf" path="res://scenes/player/states/cast_offensive.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://cn0p5156kh1jb" path="res://scenes/player/states/hit.gd" id="11_je7p5"]
 [ext_resource type="Script" uid="uid://clx4w7pohx315" path="res://scenes/player/states/cast_defensive.gd" id="12_gx1jg"]
+[ext_resource type="Texture2D" uid="uid://ktshf8t4vg2d" path="res://assets/player/large_shadow.png" id="15_fcs02"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gx1jg"]
 resource_local_to_scene = true
@@ -148,10 +149,17 @@ spell_1_scene = ExtResource("4_ugbui")
 use_parent_material = true
 
 [node name="PlayerSprite" type="Sprite2D" parent="Flippable" unique_id=33259906]
+z_index = 1
 use_parent_material = true
 texture = ExtResource("3_75vfm")
 hframes = 4
 vframes = 7
+
+[node name="LargeShadow" type="Sprite2D" parent="Flippable" unique_id=1643876282]
+show_behind_parent = true
+position = Vector2(0, 15)
+scale = Vector2(0.84375, 0.65000004)
+texture = ExtResource("15_fcs02")
 
 [node name="AttackMarker" type="Marker2D" parent="." unique_id=1532841016]
 script = ExtResource("3_hqtel")
