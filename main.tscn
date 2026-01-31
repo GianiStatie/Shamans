@@ -15,8 +15,9 @@ texture = ExtResource("4_lquwl")
 3:0/0 = 0
 3:0/0/probability = 0.05
 4:0/0 = 0
-4:0/0/modulate = Color(0.6342391, 0, 0, 1)
+4:0/0/modulate = Color(1, 0, 0.06100855, 1)
 5:0/0 = 0
+5:0/0/modulate = Color(0.56294864, 0.51480377, 0.44547725, 1)
 5:0/0/probability = 0.05
 6:0/0 = 0
 7:0/0 = 0
@@ -42,7 +43,6 @@ shader_parameter/tolerance = 0.01
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
 
 [node name="Main" type="Node2D" unique_id=226985260]
-y_sort_enabled = true
 script = ExtResource("1_1bvp3")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2120699440]
@@ -53,14 +53,15 @@ script = ExtResource("5_7mycd")
 autostart = true
 
 [node name="PlayerContainer" type="Node2D" parent="." unique_id=1167464607]
+y_sort_enabled = true
 
 [node name="Player" parent="PlayerContainer" unique_id=1304335232 instance=ExtResource("1_ig7tw")]
 material = SubResource("ShaderMaterial_1bvp3")
-position = Vector2(171, 60)
+position = Vector2(-273, 204)
 
 [node name="Player2" parent="PlayerContainer" unique_id=783978056 instance=ExtResource("1_ig7tw")]
 material = SubResource("ShaderMaterial_lquwl")
-position = Vector2(413, 129)
+position = Vector2(178, 212)
 PLAYER_CONTROLLER = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1636683370]
@@ -68,7 +69,6 @@ position = Vector2(329, 108)
 zoom = Vector2(2, 2)
 
 [node name="StaticBody2D-Nico" type="RigidBody2D" parent="." unique_id=1924074038]
-position = Vector2(152, 190)
 collision_mask = 17
 gravity_scale = 0.0
 

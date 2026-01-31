@@ -13,6 +13,7 @@ var current_radius: int
 var shrink_timer: Timer
 
 var terrain_cell_coords = Vector2i(1, 0)
+var edge_cell_coords = Vector2i(5, 0)
 var lava_cell_coords = Vector2i(4, 0)
 
 func _ready():
@@ -29,36 +30,45 @@ func _on_shrink_timer_timeout():
 func init_map():
 	clear()
 	
-	# Compute center offsets
 	var half_width = map_width / 2
 	var half_height = map_height / 2
-	
+	var r2 = current_radius * current_radius
+	var edge_thickness = 1  # tiles
+
 	for y in range(map_height):
 		for x in range(map_width):
-			# Shift coordinates so center is at (0,0)
 			var cx = x - half_width
 			var cy = y - half_height
+			var dist_sq = cx*cx + cy*cy
 			
-			if cx*cx + cy*cy > current_radius * current_radius:
+			if dist_sq > r2:
 				set_cell(Vector2i(cx, cy), 0, lava_cell_coords)
+			elif dist_sq > (current_radius - edge_thickness) * (current_radius - edge_thickness):
+				set_cell(Vector2i(cx, cy), 0, edge_cell_coords)
 			else:
 				set_cell(Vector2i(cx, cy), 0, terrain_cell_coords)
 
 
 func redraw_map():
-	# Compute center offsets
 	var half_width = map_width / 2
 	var half_height = map_height / 2
-	var prev_radius = current_radius + 1
-	
+
+	var r = current_radius
+	var prev_r = current_radius + 2
+
+	var r2 = r * r
+	var edge_r2 = (r + 1) * (r + 1)
+	var prev_r2 = prev_r * prev_r
+
 	for y in range(map_height):
 		for x in range(map_width):
-			# Shift coordinates so center is at (0,0)
 			var cx = x - half_width
 			var cy = y - half_height
-			
 			var dist_sq = cx*cx + cy*cy
-			
-			# Only set cells that were in previous radius but not in current radius
-			if dist_sq <= prev_radius * prev_radius and dist_sq > current_radius * current_radius:
-				set_cell(Vector2i(cx, cy), 0, lava_cell_coords)
+
+			# Only affect the removed ring
+			if dist_sq > r2 and dist_sq <= prev_r2:
+				if dist_sq <= edge_r2:
+					set_cell(Vector2i(cx, cy), 0, edge_cell_coords)
+				else:
+					set_cell(Vector2i(cx, cy), 0, lava_cell_coords)
