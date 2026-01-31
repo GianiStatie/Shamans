@@ -6,7 +6,7 @@ extends Area2D
 @export var veocity_curve: Curve
 
 @onready var timer: Timer = $Timer
-
+@onready var explosion_effect = preload("res://scenes/effects/explosion_effect.tscn")
 
 
 var direction := Vector2.ZERO
@@ -31,4 +31,5 @@ func _on_timer_timeout() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	Utils.instantiate_object_in_scene(explosion_effect, global_position)
 	queue_free()

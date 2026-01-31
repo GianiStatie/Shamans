@@ -68,7 +68,7 @@ func cast_spell(spell_scene: PackedScene):
 	var spell_position = cast_marker.get_attack_position()
 	var spell_angle = cast_marker.get_attack_rotation()
 	var spell_direction = global_position.direction_to(spell_position)
-	var object = Utils.instantiate_object_in_scene(spell_scene)
+	var object = Utils.instantiate_object_in_scene(spell_scene, spell_position)
 	object.cast(spell_position, spell_direction, spell_angle)
 	update_facing_direction(sign(spell_direction.x))
 
