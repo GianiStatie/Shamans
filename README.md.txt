@@ -10,5 +10,6 @@
 - [ ] add teleport spell
 - [ ] add hook
 - [ ] add anivia wall
-- [ ] add shrinking arena
+- [x] add shrinking arena
+- [ ] lava deals damage
 - [ ] add hp logic
