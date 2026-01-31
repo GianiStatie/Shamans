@@ -14,7 +14,7 @@ var shrink_timer: Timer
 
 var terrain_cell_info = [0, Vector2i(1, 0)]
 var edge_cell_info = [0, Vector2i(5, 0)]
-var lava_cell_info = [1, Vector2i(4, 0)]
+var lava_cell_info = [1, Vector2i(0, 0)]
 
 func _ready():
 	current_radius = start_radius
