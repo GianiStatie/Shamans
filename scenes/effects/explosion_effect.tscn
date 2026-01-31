@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b4dkelw4yawg4" path="res://scenes/effects/effect.tscn" id="1_5ssc0"]
 [ext_resource type="Texture2D" uid="uid://dam7sku3walwx" path="res://assets/effects/fireballHit.webp" id="2_ss4gf"]
+[ext_resource type="AudioStream" uid="uid://vi4r28ysedaj" path="res://assets/audio/hit1.wav" id="3_52shv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6p1u"]
 atlas = ExtResource("2_ss4gf")
@@ -51,3 +52,7 @@ DAMAGE = 5.0
 
 [node name="ExplosionEffect" parent="." index="1" unique_id=174993004]
 sprite_frames = SubResource("SpriteFrames_52shv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2" unique_id=230772026]
+stream = ExtResource("3_52shv")
+autoplay = true

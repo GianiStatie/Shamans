@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_ql5qc"]
 [ext_resource type="PackedScene" uid="uid://d0xutuxb8o0at" path="res://scenes/effects/explosion_effect.tscn" id="2_fnao3"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="2_vaqcd"]
+[ext_resource type="AudioStream" uid="uid://c575fleo3iqic" path="res://assets/audio/hit5_softMedium_long.wav" id="5_6cgh7"]
 
 [sub_resource type="Curve" id="Curve_wk21o"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.17869419, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32530767), 0.0, 0.0, 0, 0]
@@ -57,6 +58,10 @@ shape = SubResource("RectangleShape2D_fnao3")
 
 [node name="Timer" parent="." index="2" unique_id=260913630]
 wait_time = 1.45
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3" unique_id=548754719]
+stream = ExtResource("5_6cgh7")
+autoplay = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
