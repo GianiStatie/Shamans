@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cyylryrbnd0d5" path="res://assets/player/money_wizard.webp" id="3_75vfm"]
 [ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://scenes/player/player_attack_marker.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
-[ext_resource type="PackedScene" uid="uid://ckwnan2icfl6g" path="res://scenes/spells/fart.tscn" id="4_ugbui"]
+[ext_resource type="PackedScene" uid="uid://balqudfjryl06" path="res://scenes/spells/anivia_wall.tscn" id="4_fcs02"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://rf4a4mwbccki" path="res://scenes/player/states/move.gd" id="9_5gtgg"]
@@ -137,13 +137,14 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=1304335232]
 material = SubResource("ShaderMaterial_gx1jg")
+collision_mask = 65
 script = ExtResource("1_4flbx")
 MOVE_MAX_SPEED = 100.0
 MOVE_ACCELERATION = 300.0
 MOVE_FRICTION = 100.0
 TURN_ACCELERATION = 5.0
 spell_0_scene = ExtResource("2_p47bc")
-spell_1_scene = ExtResource("4_ugbui")
+spell_1_scene = ExtResource("4_fcs02")
 
 [node name="Flippable" type="Node2D" parent="." unique_id=554518734]
 use_parent_material = true
