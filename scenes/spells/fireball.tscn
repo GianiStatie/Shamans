@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://77r4qgip07wh" path="res://scenes/spells/fireball.gd" id="1_olwj8"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="2_vaqcd"]
 
+[sub_resource type="Curve" id="Curve_vaqcd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.11949685, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.30340332), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vaqcd"]
 atlas = ExtResource("2_vaqcd")
 region = Rect2(0, 0, 64, 64)
@@ -51,12 +55,14 @@ colors = PackedColorArray(0.85490197, 0.30980393, 0.14509805, 1, 0.98039216, 0.9
 collision_layer = 16
 collision_mask = 15
 script = ExtResource("1_olwj8")
+veocity_curve = SubResource("Curve_vaqcd")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=64191743]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_6cgh7")
 autoplay = "default"
-frame_progress = 0.13303004
+frame_progress = 0.29225132
+speed_scale = 0.725
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1914504540]
 visible = false

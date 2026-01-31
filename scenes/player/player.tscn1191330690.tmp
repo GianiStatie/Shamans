@@ -6,17 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://cyylryrbnd0d5" path="res://assets/player/money_wizard.webp" id="3_75vfm"]
 [ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://scenes/player/player_attack_marker.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
-[ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
-[ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
-[ext_resource type="Script" uid="uid://rf4a4mwbccki" path="res://scenes/player/move.gd" id="9_5gtgg"]
-[ext_resource type="Script" uid="uid://buds2vedk7cyf" path="res://scenes/player/states/cast_offensive.gd" id="10_h17s1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75vfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p47bc"]
 
 [sub_resource type="Animation" id="Animation_75vfm"]
-resource_name = "CastOffensive"
+resource_name = "Cast_Offensive"
 length = 0.4
 step = 0.2
 tracks/0/type = "value"
@@ -82,7 +78,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5gtgg"]
 _data = {
-&"CastOffensive": SubResource("Animation_75vfm"),
+&"Cast_Offensive": SubResource("Animation_75vfm"),
 &"Idle": SubResource("Animation_0owmy"),
 &"Move": SubResource("Animation_qek5x"),
 &"RESET": SubResource("Animation_5gtgg")
@@ -90,10 +86,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=1304335232]
 script = ExtResource("1_4flbx")
-MOVE_MAX_SPEED = 100.0
-MOVE_ACCELERATION = 300.0
-MOVE_FRICTION = 100.0
-TURN_ACCELERATION = 5.0
 spell_0_scene = ExtResource("2_p47bc")
 
 [node name="Flippable" type="Node2D" parent="." unique_id=554518734]
@@ -146,21 +138,7 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=755200859]
 shape = SubResource("RectangleShape2D_p47bc")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1970078724]
-script = ExtResource("7_0owmy")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine" unique_id=283376590]
-script = ExtResource("8_qek5x")
-
-[node name="Move" type="Node" parent="StateMachine" unique_id=1746980488]
-script = ExtResource("9_5gtgg")
-
-[node name="CastOffensive" type="Node" parent="StateMachine" unique_id=844071179]
-script = ExtResource("10_h17s1")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1270154945]
 libraries/ = SubResource("AnimationLibrary_5gtgg")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastOffensive" method="_on_animation_player_animation_finished"]
