@@ -8,5 +8,5 @@ class_name Spell extends Area2D
 @onready var timer: Timer = $Timer
 
 
-func cast(cast_source: Player, cast_direction: Vector2, cast_rotation: float) -> void:
+func cast(_cast_source: Player, _cast_direction: Vector2, _cast_rotation: float) -> void:
 	pass
