@@ -90,7 +90,8 @@ func play_animation(animation_name: String) -> void:
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Spell"):
+	if area.is_in_group("Spell") or area.is_in_group("Explosion"):
+		
 		var impact_direction = area.global_position.direction_to(self.global_position)
 		velocity += impact_direction * area.KNOCKBACK
 		state_machine.transition_to("Hit")

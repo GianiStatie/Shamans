@@ -2,7 +2,7 @@ class_name Spell
 extends Area2D
 
 @export var MAX_SPEED: float = 300.0
-@export var KNOCKBACK: float = 100.0
+@export var KNOCKBACK: float = 0.0
 @export var veocity_curve: Curve
 
 @onready var timer: Timer = $Timer
@@ -12,7 +12,6 @@ extends Area2D
 var direction := Vector2.ZERO
 
 func cast(cast_global_position: Vector2, cast_direction: Vector2, cast_rotation: float) -> void:
-	self.global_position = cast_global_position
 	self.direction = cast_direction
 	self.rotation = cast_rotation
 
@@ -27,6 +26,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	Utils.instantiate_object_in_scene(explosion_effect, global_position)
 	queue_free()
 
 
