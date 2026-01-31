@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://ckwnan2icfl6g"]
+
+[ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_0hy87"]
+[ext_resource type="Script" uid="uid://dbia6vbsk2umj" path="res://scenes/spells/fart.gd" id="2_6oxob"]
+[ext_resource type="Texture2D" uid="uid://b04ur8ds32sfq" path="res://assets/effects/Free Smoke Fx  Pixel 05.png" id="2_332s2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oxob"]
+atlas = ExtResource("2_332s2")
+region = Rect2(0, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uugu7"]
+atlas = ExtResource("2_332s2")
+region = Rect2(64, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ja86d"]
+atlas = ExtResource("2_332s2")
+region = Rect2(128, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b14ag"]
+atlas = ExtResource("2_332s2")
+region = Rect2(192, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv3c1"]
+atlas = ExtResource("2_332s2")
+region = Rect2(256, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvi18"]
+atlas = ExtResource("2_332s2")
+region = Rect2(320, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbesn"]
+atlas = ExtResource("2_332s2")
+region = Rect2(384, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k6ey"]
+atlas = ExtResource("2_332s2")
+region = Rect2(448, 512, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8l0q"]
+atlas = ExtResource("2_332s2")
+region = Rect2(512, 512, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6oxob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oxob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uugu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ja86d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b14ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv3c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvi18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbesn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k6ey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8l0q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_332s2"]
+radius = 36.0
+
+[node name="Fart" unique_id=1366827963 instance=ExtResource("1_0hy87")]
+z_index = -1
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_6oxob")
+KNOCKBACK = 300.0
+
+[node name="Sprite2D" parent="." index="0" unique_id=64191743]
+modulate = Color(0.67058825, 0.8666667, 0.39215687, 1)
+position = Vector2(0, 3.9999998)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_6oxob")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1914504540]
+shape = SubResource("CircleShape2D_332s2")
+
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

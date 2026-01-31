@@ -1,7 +1,8 @@
-class_name CastOffensiveState extends State
+class_name CastDefensiveState extends State
 
 
 func enter(msg := {}) -> void:
+	owner.velocity = Vector2.ZERO
 	owner.cast_spell(msg["spell_scene"])
 	owner.set_can_move(false)
 	owner.play_animation(self.name)

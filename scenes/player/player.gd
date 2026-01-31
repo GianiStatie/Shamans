@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 enum PLAYERS {
 	PLAYER_1,
@@ -14,6 +14,7 @@ enum PLAYERS {
 
 # PLAYER SPELLS
 @export var spell_0_scene: PackedScene
+@export var spell_1_scene: PackedScene
 
 @onready var cast_marker = $AttackMarker
 @onready var flippable_container = $Flippable
@@ -34,7 +35,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
 		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
 	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
-		print("cast_1")
+		state_machine.transition_to("CastDefensive", {"spell_scene": spell_1_scene})
 
 
 func _physics_process(delta: float) -> void:
@@ -67,9 +68,10 @@ func _physics_process(delta: float) -> void:
 func cast_spell(spell_scene: PackedScene):
 	var spell_position = cast_marker.get_attack_position()
 	var spell_angle = cast_marker.get_attack_rotation()
-	var spell_direction = global_position.direction_to(spell_position)
-	var object = Utils.instantiate_object_in_scene(spell_scene, spell_position)
-	object.cast(spell_position, spell_direction, spell_angle)
+	# we can remove the normalized to put back the bug with the fade-away
+	var spell_direction = global_position.direction_to(spell_position).normalized()
+	var spell_object = Utils.instantiate_object_in_scene(spell_scene, spell_position)
+	spell_object.cast(self, spell_direction, spell_angle)
 	update_facing_direction(sign(spell_direction.x))
 
 
@@ -91,7 +93,8 @@ func play_animation(animation_name: String) -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Spell") or area.is_in_group("Explosion"):
-		
+		if area.source == self:
+			return
 		var impact_direction = area.global_position.direction_to(self.global_position)
 		velocity += impact_direction * area.KNOCKBACK
 		state_machine.transition_to("Hit")

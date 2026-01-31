@@ -1,4 +1,4 @@
-class_name CastOffensiveState extends State
+class_name MoveState extends State
 
 
 func enter(_msg := {}) -> void:
