@@ -16,5 +16,3 @@ speed_scale = 0.725
 
 [node name="Timer" type="Timer" parent="." unique_id=260913630]
 autostart = true
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

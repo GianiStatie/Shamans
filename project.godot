@@ -91,6 +91,7 @@ player_1_spell_1={
 2d_physics/layer_4="player_3"
 2d_physics/layer_5="projectile"
 2d_physics/layer_6="lava"
+2d_physics/layer_7="Environment"
 
 [physics]
 
