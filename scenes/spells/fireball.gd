@@ -30,6 +30,6 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	Utils.instantiate_object_in_scene(explosion_effect, global_position)
 	queue_free()

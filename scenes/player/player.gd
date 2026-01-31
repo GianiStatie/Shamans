@@ -26,8 +26,8 @@ var can_move := true
 
 
 func _ready() -> void:
-	# TODO: change collision layer based on player index
-	pass
+	var player_colors = Constants.player_colors["player_%s" % PLAYER_CONTROLLER]
+	self.material.set_shader_parameter("to_colors", player_colors)
 
 
 func _input(event: InputEvent) -> void:

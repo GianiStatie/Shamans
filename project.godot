@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Constants="*uid://bx0jr8vq162t5"
 Utils="*uid://b17m5nxhw4ty3"
 
 [input]
