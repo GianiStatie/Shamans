@@ -12,9 +12,9 @@ extends TileMapLayer
 var current_radius: int
 var shrink_timer: Timer
 
-var terrain_cell_coords = Vector2i(1, 0)
-var edge_cell_coords = Vector2i(5, 0)
-var lava_cell_coords = Vector2i(4, 0)
+var terrain_cell_info = [0, Vector2i(1, 0)]
+var edge_cell_info = [0, Vector2i(5, 0)]
+var lava_cell_info = [1, Vector2i(4, 0)]
 
 func _ready():
 	current_radius = start_radius
@@ -41,12 +41,10 @@ func init_map():
 			var cy = y - half_height
 			var dist_sq = cx*cx + cy*cy
 			
-			if dist_sq > r2:
-				set_cell(Vector2i(cx, cy), 0, lava_cell_coords)
+			if dist_sq < r2:
+				set_cell(Vector2i(cx, cy), terrain_cell_info[0], terrain_cell_info[1])
 			elif dist_sq > (current_radius - edge_thickness) * (current_radius - edge_thickness):
-				set_cell(Vector2i(cx, cy), 0, edge_cell_coords)
-			else:
-				set_cell(Vector2i(cx, cy), 0, terrain_cell_coords)
+				set_cell(Vector2i(cx, cy), lava_cell_info[0], lava_cell_info[1])
 
 
 func redraw_map():
@@ -69,6 +67,6 @@ func redraw_map():
 			# Only affect the removed ring
 			if dist_sq > r2 and dist_sq <= prev_r2:
 				if dist_sq <= edge_r2:
-					set_cell(Vector2i(cx, cy), 0, edge_cell_coords)
+					set_cell(Vector2i(cx, cy), edge_cell_info[0], edge_cell_info[1])
 				else:
-					set_cell(Vector2i(cx, cy), 0, lava_cell_coords)
+					set_cell(Vector2i(cx, cy), lava_cell_info[0], lava_cell_info[1])
