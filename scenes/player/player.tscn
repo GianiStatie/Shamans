@@ -8,8 +8,9 @@
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
-[ext_resource type="Script" uid="uid://rf4a4mwbccki" path="res://scenes/player/move.gd" id="9_5gtgg"]
+[ext_resource type="Script" uid="uid://rf4a4mwbccki" path="res://scenes/player/states/move.gd" id="9_5gtgg"]
 [ext_resource type="Script" uid="uid://buds2vedk7cyf" path="res://scenes/player/states/cast_offensive.gd" id="10_h17s1"]
+[ext_resource type="Script" uid="uid://cn0p5156kh1jb" path="res://scenes/player/states/hit.gd" id="11_je7p5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75vfm"]
 
@@ -30,6 +31,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "Hit"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flippable/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 17, 16]
 }
 
 [sub_resource type="Animation" id="Animation_0owmy"]
@@ -83,6 +100,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5gtgg"]
 _data = {
 &"CastOffensive": SubResource("Animation_75vfm"),
+&"Hit": SubResource("Animation_h17s1"),
 &"Idle": SubResource("Animation_0owmy"),
 &"Move": SubResource("Animation_qek5x"),
 &"RESET": SubResource("Animation_5gtgg")
@@ -159,8 +177,12 @@ script = ExtResource("9_5gtgg")
 [node name="CastOffensive" type="Node" parent="StateMachine" unique_id=844071179]
 script = ExtResource("10_h17s1")
 
+[node name="Hit" type="Node" parent="StateMachine" unique_id=393814450]
+script = ExtResource("11_je7p5")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1270154945]
 libraries/ = SubResource("AnimationLibrary_5gtgg")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastOffensive" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hit" method="_on_animation_player_animation_finished"]

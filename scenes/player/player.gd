@@ -32,7 +32,6 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
-		print("here")
 		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
 	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
 		print("cast_1")
@@ -93,3 +92,5 @@ func play_animation(animation_name: String) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Spell"):
 		var impact_direction = area.global_position.direction_to(self.global_position)
+		velocity += impact_direction * area.KNOCKBACK
+		state_machine.transition_to("Hit")
