@@ -20,10 +20,14 @@ enum PLAYERS {
 @onready var flippable_container = $Flippable
 @onready var state_machine = $StateMachine
 @onready var animation_player = $AnimationPlayer
+@onready var stats = $Stats
 
 
 var input_vector := Vector2.ZERO
 var can_move := true
+var dot := 0.0
+var dot_delta := 0.0
+var dot_interval := 1.0
 
 
 func _ready() -> void:
@@ -63,6 +67,12 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, MOVE_FRICTION * delta)
 	
 	move_and_slide()
+	
+	# apply effects
+	dot_delta += delta
+	if dot_delta >= dot_interval:
+		dot_delta = 0.0
+		stats.health -= dot
 
 
 func cast_spell(spell_scene: PackedScene):
@@ -98,3 +108,13 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		var impact_direction = area.global_position.direction_to(self.global_position)
 		velocity += impact_direction * area.KNOCKBACK
 		state_machine.transition_to("Hit")
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Lava"):
+		dot += 5
+
+
+func _on_hurtbox_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Lava"):
+		dot = max(dot - 5, 0.0)

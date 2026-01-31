@@ -11,5 +11,5 @@
 - [ ] add hook
 - [ ] add anivia wall
 - [x] add shrinking arena
-- [ ] lava deals damage
-- [ ] add hp logic
+- [x] lava deals damage
+- [ ] spells deal damage

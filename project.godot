@@ -83,6 +83,15 @@ player_1_spell_1={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player_0"
+2d_physics/layer_2="player_1"
+2d_physics/layer_3="player_2"
+2d_physics/layer_4="player_3"
+2d_physics/layer_5="projectile"
+2d_physics/layer_6="lava"
+
 [physics]
 
 2d/physics_engine="GodotPhysics2D"
