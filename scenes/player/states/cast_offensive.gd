@@ -31,3 +31,8 @@ func _on_pre_cast_timer_ended() -> void:
 		pending_spell_scene = null
 	owner.set_can_move(true)
 	state_machine.transition_to("Idle")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == self.name:
+		pass
