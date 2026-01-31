@@ -31,6 +31,7 @@ texture = ExtResource("4_lquwl")
 4:0/animation_frame_1/duration = 0.5
 4:0/0 = 0
 4:0/0/modulate = Color(1, 0.6583885, 0, 1)
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_272bh"]
 physics_layer_0/collision_layer = 32
