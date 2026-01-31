@@ -7,6 +7,7 @@
 - [x] zoom camera out the further the players are
 - [ ] add ui to display items
 - [ ] add cooldown to spells
+- [ ] add cast-time to spells
 - [ ] add teleport spell
 - [ ] add hook
 - [ ] add anivia wall
