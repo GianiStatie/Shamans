@@ -11,9 +11,8 @@
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://rf4a4mwbccki" path="res://scenes/player/states/move.gd" id="9_5gtgg"]
-[ext_resource type="Script" uid="uid://buds2vedk7cyf" path="res://scenes/player/states/cast_offensive.gd" id="10_h17s1"]
+[ext_resource type="Script" uid="uid://buds2vedk7cyf" path="res://scenes/player/states/cast.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://cn0p5156kh1jb" path="res://scenes/player/states/hit.gd" id="11_je7p5"]
-[ext_resource type="Script" uid="uid://clx4w7pohx315" path="res://scenes/player/states/cast_defensive.gd" id="12_gx1jg"]
 [ext_resource type="Texture2D" uid="uid://ktshf8t4vg2d" path="res://assets/player/large_shadow.png" id="15_fcs02"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gx1jg"]
@@ -223,7 +222,7 @@ script = ExtResource("10_h17s1")
 one_shot = true
 
 [node name="CastDefensive" type="Node" parent="StateMachine" unique_id=931839397]
-script = ExtResource("12_gx1jg")
+script = ExtResource("10_h17s1")
 
 [node name="Timer" type="Timer" parent="StateMachine/CastDefensive" unique_id=455268420]
 one_shot = true
