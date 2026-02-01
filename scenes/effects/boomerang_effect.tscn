@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b4dkelw4yawg4" path="res://scenes/effects/effect.tscn" id="1_y2kby"]
 [ext_resource type="Texture2D" uid="uid://dam7sku3walwx" path="res://assets/effects/fireballHit.webp" id="2_m0ppm"]
+[ext_resource type="AudioStream" uid="uid://vi4r28ysedaj" path="res://assets/audio/hit1.wav" id="3_m0ppm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_y2kby"]
 blend_mode = 2
@@ -49,10 +50,21 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lemck"]
+random_pitch = 1.1892071
+streams_count = 1
+stream_0/stream = ExtResource("3_m0ppm")
+
 [node name="ExplosionEffect" unique_id=1538342731 instance=ExtResource("1_y2kby")]
-KNOCKBACK = 225.0
+KNOCKBACK = 150.0
 DAMAGE = 7.0
 
 [node name="ExplosionEffect" parent="." index="1" unique_id=174993004]
 material = SubResource("CanvasItemMaterial_y2kby")
 sprite_frames = SubResource("SpriteFrames_52shv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="2" unique_id=1755814121]
+stream = SubResource("AudioStreamRandomizer_lemck")
+pitch_scale = 2.0
+autoplay = true
+bus = &"SFX"

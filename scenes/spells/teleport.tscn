@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://vrpd8ktqykkc" path="res://scenes/spells/teleport.gd" id="2_6nbr6"]
 [ext_resource type="PackedScene" uid="uid://dv2x1pif3o6kr" path="res://scenes/effects/teleport_effect.tscn" id="3_glrv3"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="3_s6xv8"]
+[ext_resource type="AudioStream" uid="uid://dygnswir0d6m7" path="res://assets/audio/Teleport.wav" id="5_dkksn"]
 
 [sub_resource type="Curve" id="Curve_s6xv8"]
 _data = [Vector2(0.005494505, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -41,10 +42,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vhma1"]
+random_pitch = 1.3348398
+streams_count = 1
+stream_0/stream = ExtResource("5_dkksn")
+
 [node name="Teleport" unique_id=1366827963 instance=ExtResource("1_etu1k")]
 script = ExtResource("2_6nbr6")
 CAST_DELAY = 0.1
 MAX_SPEED = 600.0
+COOLDOWN = 8.0
 on_hit_effect = ExtResource("3_glrv3")
 velocity_curve = SubResource("Curve_s6xv8")
 
@@ -56,5 +63,10 @@ speed_scale = 1.5
 
 [node name="Timer" parent="." index="2" unique_id=260913630]
 wait_time = 0.2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3" unique_id=2123913015]
+stream = SubResource("AudioStreamRandomizer_vhma1")
+volume_db = -28.0
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

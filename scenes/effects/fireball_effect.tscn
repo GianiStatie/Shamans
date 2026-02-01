@@ -1,28 +1,28 @@
 [gd_scene format=3 uid="uid://d0xutuxb8o0at"]
 
-[ext_resource type="PackedScene" uid="uid://b4dkelw4yawg4" path="res://scenes/effects/effect.tscn" id="1_5ssc0"]
-[ext_resource type="Texture2D" uid="uid://dam7sku3walwx" path="res://assets/effects/fireballHit.webp" id="2_ss4gf"]
-[ext_resource type="AudioStream" uid="uid://dyl1pktt7we4g" path="res://assets/audio/HeavyKnock.wav" id="3_k6p1u"]
-[ext_resource type="AudioStream" uid="uid://cb3hto7ibnlt" path="res://assets/audio/Knock2.wav" id="4_f0pw8"]
+[ext_resource type="PackedScene" uid="uid://b4dkelw4yawg4" path="res://scenes/effects/effect.tscn" id="1_rtf7i"]
+[ext_resource type="Texture2D" uid="uid://dam7sku3walwx" path="res://assets/effects/fireballHit.webp" id="2_ddk1v"]
+[ext_resource type="AudioStream" uid="uid://dyl1pktt7we4g" path="res://assets/audio/HeavyKnock.wav" id="3_it8te"]
+[ext_resource type="AudioStream" uid="uid://cb3hto7ibnlt" path="res://assets/audio/Knock2.wav" id="4_ar40c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6p1u"]
-atlas = ExtResource("2_ss4gf")
+atlas = ExtResource("2_ddk1v")
 region = Rect2(192, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0pw8"]
-atlas = ExtResource("2_ss4gf")
+atlas = ExtResource("2_ddk1v")
 region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0pkj"]
-atlas = ExtResource("2_ss4gf")
+atlas = ExtResource("2_ddk1v")
 region = Rect2(384, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shsxu"]
-atlas = ExtResource("2_ss4gf")
+atlas = ExtResource("2_ddk1v")
 region = Rect2(480, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbm8i"]
-atlas = ExtResource("2_ss4gf")
+atlas = ExtResource("2_ddk1v")
 region = Rect2(576, 0, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_52shv"]
@@ -51,17 +51,17 @@ animations = [{
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j0pkj"]
 random_pitch = 1.4121728
 streams_count = 2
-stream_0/stream = ExtResource("3_k6p1u")
-stream_1/stream = ExtResource("4_f0pw8")
+stream_0/stream = ExtResource("3_it8te")
+stream_1/stream = ExtResource("4_ar40c")
 
-[node name="ExplosionEffect" unique_id=1538342731 instance=ExtResource("1_5ssc0")]
-KNOCKBACK = 175.0
-DAMAGE = 5.0
+[node name="FireballExplosionEffect" unique_id=1538342731 instance=ExtResource("1_rtf7i")]
+DAMAGE = 10.0
 
 [node name="ExplosionEffect" parent="." index="1" unique_id=174993004]
 sprite_frames = SubResource("SpriteFrames_52shv")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="2" unique_id=478054556]
 stream = SubResource("AudioStreamRandomizer_j0pkj")
+volume_db = -5.0
 autoplay = true
 bus = &"SFX"

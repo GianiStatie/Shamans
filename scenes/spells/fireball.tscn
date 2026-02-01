@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://77r4qgip07wh" path="res://scenes/spells/fireball.gd" id="1_olwj8"]
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_ql5qc"]
-[ext_resource type="PackedScene" uid="uid://d0xutuxb8o0at" path="res://scenes/effects/explosion_effect.tscn" id="2_fnao3"]
+[ext_resource type="PackedScene" uid="uid://d0xutuxb8o0at" path="res://scenes/effects/fireball_effect.tscn" id="2_fnao3"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="2_vaqcd"]
 [ext_resource type="Texture2D" uid="uid://wd23b6bbytjk" path="res://assets/UI/icons/139.png" id="3_6cgh7"]
 [ext_resource type="AudioStream" uid="uid://c575fleo3iqic" path="res://assets/audio/hit5_softMedium_long.wav" id="5_6cgh7"]
 
 [sub_resource type="Curve" id="Curve_wk21o"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.17869419, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32530767), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.17869419, 1), 0.0, 0.0, 0, 0, Vector2(0.7847534, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48969156), -4.675209, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vaqcd"]
 atlas = ExtResource("2_vaqcd")
@@ -41,6 +41,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wk21o"]
+radius = 12.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bhjfn"]
 random_pitch = 1.6026951
@@ -52,14 +53,16 @@ collision_layer = 16
 collision_mask = 95
 script = ExtResource("1_olwj8")
 CAST_DELAY = 0.3
-MAX_SPEED = 375.0
-KNOCKBACK = 100.0
-DAMAGE = 5.0
+MAX_SPEED = 300.0
+KNOCKBACK = 0.0
+DAMAGE = 10.0
+COOLDOWN = 7.0
 ICON = ExtResource("3_6cgh7")
 on_hit_effect = ExtResource("2_fnao3")
 velocity_curve = SubResource("Curve_wk21o")
 
 [node name="Sprite2D" parent="." index="0" unique_id=64191743]
+scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_vaqcd")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1914504540]
@@ -70,6 +73,7 @@ wait_time = 1.45
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3" unique_id=1450166533]
 stream = SubResource("AudioStreamRandomizer_bhjfn")
+volume_db = 5.0
 autoplay = true
 bus = &"SFX"
 
