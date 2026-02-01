@@ -1,6 +1,5 @@
 extends Spell
 
-var source: Player
 var direction := Vector2.ZERO
 
 func cast(cast_source: Player, cast_direction: Vector2, cast_rotation: float) -> void:
@@ -30,5 +29,8 @@ func _on_timer_timeout() -> void:
 	queue_free()
 
 
-func _on_area_entered(_area: Area2D) -> void:
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Spell"): #TODO: add source to explosions
+		if area.source == self.source:
+			return
 	_on_timer_timeout()
