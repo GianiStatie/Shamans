@@ -32,7 +32,6 @@ var is_ready = false
 @onready var stats = $Stats
 @onready var spell_ui_0 = %SpellSelect_0
 @onready var spell_ui_1 = %SpellSelect_1
-@export var playerNumber: int
 
 @export var main: Node2D
 
@@ -50,6 +49,7 @@ var dot_interval := 1.0
 var is_using_mouse = true
 
 signal spells_are_ready
+signal player_died(player_number: int)
 
 
 func _ready() -> void:
@@ -212,8 +212,8 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 
 func _on_stats_player_health_zero() -> void:
 	player_dead = true
-	main.ShowWinScreen(playerNumber)
 	state_machine.transition_to("Death")
+	player_died.emit(PLAYER_CONTROLLER)
 
 
 func _on_spells_selected(selected_spell_scenes: Variant) -> void:
