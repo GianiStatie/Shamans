@@ -5,6 +5,7 @@ extends Node2D
 
 var safe_camera_margin: Vector2
 var initial_zoom: Vector2
+var players_ready_cnt: int = 0
 
 
 func _ready() -> void:
@@ -29,3 +30,11 @@ func _physics_process(_delta: float) -> void:
 	var zoom_factor = min(ratio.x, ratio.y)
 	if zoom_factor < 1.0 and zoom_factor >= 0.5:
 		camera.zoom = camera.zoom.lerp(initial_zoom * zoom_factor, 0.5)
+
+
+func _on_player_spells_are_ready() -> void:
+	players_ready_cnt += 1
+	if players_ready_cnt != player_container.get_child_count():
+		return
+	for child in player_container.get_children():
+		child.is_ready = true

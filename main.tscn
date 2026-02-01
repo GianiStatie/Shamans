@@ -88,3 +88,5 @@ drag_right_margin = 0.3
 drag_bottom_margin = 0.3
 
 [connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_shrink_timer_timeout"]
+[connection signal="spells_are_ready" from="PlayerContainer/Player" to="." method="_on_player_spells_are_ready"]
+[connection signal="spells_are_ready" from="PlayerContainer/Player2" to="." method="_on_player_spells_are_ready"]

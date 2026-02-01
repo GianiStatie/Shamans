@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bb83nlmo8phqt"]
+
+[ext_resource type="Script" uid="uid://cm0xjigo37qyg" path="res://scenes/player/spell_select.gd" id="1_a2ojt"]
+[ext_resource type="Texture2D" uid="uid://b0u6fvs452wrs" path="res://assets/UI/Shop Concept.png" id="2_0yodn"]
+[ext_resource type="Texture2D" uid="uid://t1gdh0d55id7" path="res://assets/UI/icons/6.png" id="3_xffxi"]
+[ext_resource type="Texture2D" uid="uid://bbqil6hg0jiyy" path="res://assets/UI/icons/83.png" id="4_3q26m"]
+[ext_resource type="Texture2D" uid="uid://c03kwaxd404mi" path="res://assets/UI/icons/92.png" id="5_kiuiu"]
+[ext_resource type="Texture2D" uid="uid://cj4chor2bfacy" path="res://assets/UI/icons/114.png" id="6_nubit"]
+[ext_resource type="Texture2D" uid="uid://wd23b6bbytjk" path="res://assets/UI/icons/139.png" id="7_ajkwp"]
+[ext_resource type="Texture2D" uid="uid://bw6s6w4ym87dt" path="res://assets/UI/icons/182.png" id="8_punvo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_007i1"]
+atlas = ExtResource("2_0yodn")
+region = Rect2(216, 0, 224, 192)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_a2ojt"]
+
+[node name="SpellSelect_0" type="MarginContainer" unique_id=327952404 node_paths=PackedStringArray("button_container")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_a2ojt")
+button_container = NodePath("VBoxContainer/HBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=793067112]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=2031938146]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_007i1")
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1082579891]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="meteor" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1615846747]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_xffxi")
+texture_disabled = SubResource("PlaceholderTexture2D_a2ojt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="boomerang" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1680145012]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_3q26m")
+texture_disabled = SubResource("PlaceholderTexture2D_a2ojt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="smoke" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=935759238]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_kiuiu")
+texture_disabled = SubResource("PlaceholderTexture2D_a2ojt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="teleport" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=788944023]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_nubit")
+texture_disabled = SubResource("PlaceholderTexture2D_a2ojt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="fireball" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=543853786]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_ajkwp")
+texture_disabled = SubResource("PlaceholderTexture2D_a2ojt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="anivia_wall" type="TextureButton" parent="VBoxContainer/HBoxContainer" unique_id=1510011259]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_punvo")
+texture_disabled = SubResource("PlaceholderTexture2D_a2ojt")
+ignore_texture_size = true
+stretch_mode = 0

@@ -13,6 +13,7 @@ enum PLAYERS {
 @export var PLAYER_CONTROLLER: PLAYERS = PLAYERS.PLAYER_1
 
 var player_dead = false
+var is_ready = false
 
 # PLAYER SPELLS
 @export var spell_0_scene: PackedScene
@@ -29,6 +30,8 @@ var player_dead = false
 @onready var state_machine = $StateMachine
 @onready var animation_player = $AnimationPlayer
 @onready var stats = $Stats
+@onready var spell_ui_0 = %SpellSelect_0
+@onready var spell_ui_1 = %SpellSelect_1
 
 # SFX
 @export var hurt_SFX: AudioStreamPlayer2D
@@ -43,8 +46,16 @@ var dot_delta := 0.0
 var dot_interval := 1.0
 var is_using_mouse = true
 
+signal spells_are_ready
+
 
 func _ready() -> void:
+	if PLAYER_CONTROLLER == 0:
+		spell_ui_0.visible = true
+		spell_ui_1.visible = false
+	elif PLAYER_CONTROLLER == 1:
+		spell_ui_0.visible = false
+		spell_ui_1.visible = true
 	init_spell_ui()
 	var player_colors = Constants.player_colors["player_%s" % PLAYER_CONTROLLER]
 	self.material.set_shader_parameter("to_colors", player_colors)
@@ -54,7 +65,7 @@ func _input(event: InputEvent) -> void:
 	if not can_cast:
 		return
 	
-	if player_dead: 
+	if not is_ready or player_dead: 
 		return
 	
 	if event is InputEventMouseMotion:
@@ -82,7 +93,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if player_dead: 
+	if not is_ready or player_dead: 
 		return
 	
 	if can_move:
@@ -192,3 +203,13 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 func _on_stats_player_health_zero() -> void:
 	player_dead = true
 	state_machine.transition_to("Death")
+
+
+func _on_spells_selected(selected_spell_scenes: Variant) -> void:
+	spell_0_scene = selected_spell_scenes[0]
+	spell_1_scene = selected_spell_scenes[1]
+	spell_2_scene = selected_spell_scenes[2]
+	spell_3_scene = selected_spell_scenes[3]
+	spell_scenes = [spell_0_scene, spell_1_scene, spell_2_scene, spell_3_scene]
+	init_spell_ui()
+	spells_are_ready.emit()
