@@ -9,6 +9,7 @@ class_name Spell extends Area2D
 
 @onready var timer: Timer = $Timer
 
+var source: Player
 
 func cast(_cast_source: Player, _cast_direction: Vector2, _cast_rotation: float) -> void:
 	pass

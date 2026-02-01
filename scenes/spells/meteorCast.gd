@@ -22,14 +22,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	if on_hit_effect:
-		var effect = Utils.instantiate_object_in_scene(on_hit_effect, global_position)
-		effect.source = source
+	var effect = Utils.instantiate_object_in_scene(on_hit_effect, global_position)
+	effect.source = source
 	queue_free()
-
-
-func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Spell"): #TODO: put source in explosion
-		if area.source == self.source:
-			return
-	_on_timer_timeout()

@@ -61,7 +61,7 @@ tile_set = SubResource("TileSet_272bh")
 script = ExtResource("5_7mycd")
 
 [node name="Timer" type="Timer" parent="TileMapLayer" unique_id=8616257]
-wait_time = 0.5
+wait_time = 1.5
 autostart = true
 
 [node name="PlayerContainer" type="Node2D" parent="." unique_id=1167464607]
@@ -70,6 +70,7 @@ y_sort_enabled = true
 [node name="Player" parent="PlayerContainer" unique_id=1304335232 instance=ExtResource("1_ig7tw")]
 material = SubResource("ShaderMaterial_7mycd")
 position = Vector2(-273, 204)
+TURN_ACCELERATION = 100.0
 
 [node name="Player2" parent="PlayerContainer" unique_id=783978056 instance=ExtResource("1_ig7tw")]
 material = SubResource("ShaderMaterial_272bh")
@@ -78,6 +79,11 @@ PLAYER_CONTROLLER = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1636683370]
 position = Vector2(329, 108)
-zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
 
 [connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_shrink_timer_timeout"]
