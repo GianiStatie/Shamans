@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://ds04fbys5d0xl" path="res://scenes/spells/fireball.tscn" id="2_p47bc"]
 [ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://scenes/player/player_attack_marker.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
-[ext_resource type="PackedScene" uid="uid://dmjr2i4ngq6qd" path="res://scenes/spells/boomerang.tscn" id="4_3j4b4"]
+[ext_resource type="PackedScene" uid="uid://ckwnan2icfl6g" path="res://scenes/spells/smoke.tscn" id="4_yj68g"]
 [ext_resource type="PackedScene" uid="uid://ctxi17gackdq6" path="res://scenes/spells/teleport.tscn" id="6_lgqa7"]
-[ext_resource type="PackedScene" uid="uid://cahrj3owxrhl4" path="res://scenes/spells/Meteor.tscn" id="6_myrg7"]
+[ext_resource type="PackedScene" uid="uid://cahrj3owxrhl4" path="res://scenes/spells/meteor.tscn" id="6_myrg7"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Texture2D" uid="uid://l4ytno1d3obv" path="res://assets/player/money wizard.png" id="7_yj68g"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://be4pqyrbvpbpy" path="res://assets/audio/Hobgob_Death.wav" id="16_kvlxm"]
 [ext_resource type="Script" uid="uid://hck5avjrgx6s" path="res://scenes/player/states/death.gd" id="16_uf5tr"]
 [ext_resource type="AudioStream" uid="uid://1xu2exty7igw" path="res://assets/audio/Hobgob_Death2.wav" id="17_uf5tr"]
-[ext_resource type="Script" uid="uid://coit1w7mjyncx" path="res://scenes/player/taunt.gd" id="18_yj68g"]
+[ext_resource type="Script" path="res://scenes/player/taunt.gd" id="18_yj68g"]
 [ext_resource type="Script" uid="uid://cjbbvxpf3d85g" path="res://scenes/UI/player_spell_canvas.gd" id="20_8ydkj"]
 [ext_resource type="PackedScene" uid="uid://berq6h2fenavr" path="res://scenes/UI/spell_button.tscn" id="21_3j4b4"]
 
@@ -229,7 +229,7 @@ MOVE_ACCELERATION = 300.0
 MOVE_FRICTION = 100.0
 TURN_ACCELERATION = 5.0
 spell_0_scene = ExtResource("2_p47bc")
-spell_1_scene = ExtResource("4_3j4b4")
+spell_1_scene = ExtResource("4_yj68g")
 spell_2_scene = ExtResource("6_myrg7")
 spell_3_scene = ExtResource("6_lgqa7")
 hurt_SFX = NodePath("AudioStreamPlayer2D")
@@ -312,6 +312,12 @@ script = ExtResource("10_h17s1")
 [node name="CastDefensive" type="Node" parent="StateMachine" unique_id=931839397]
 script = ExtResource("10_h17s1")
 
+[node name="CastSmoke" type="Node" parent="StateMachine" unique_id=381549437]
+script = ExtResource("10_h17s1")
+
+[node name="CastUtility" type="Node" parent="StateMachine" unique_id=1618043159]
+script = ExtResource("10_h17s1")
+
 [node name="Hit" type="Node" parent="StateMachine" unique_id=393814450]
 script = ExtResource("11_je7p5")
 
@@ -360,4 +366,6 @@ grow_vertical = 0
 [connection signal="body_shape_entered" from="Hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastOffensive" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastDefensive" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastSmoke" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastUtility" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hit" method="_on_animation_player_animation_finished"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://caf6gburf7aim"]
 
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_4r06o"]
-[ext_resource type="Script" uid="uid://cy7hv8m2b1mjo" path="res://scenes/spells/meteor_incoming.gd" id="2_6cy06"]
+[ext_resource type="Script" uid="uid://cy7hv8m2b1mjo" path="res://scenes/effects/meteor_incoming.gd" id="2_6cy06"]
 [ext_resource type="Texture2D" uid="uid://c24f5ef675lex" path="res://assets/spells/MeteorCircle.png" id="3_4r06o"]
 [ext_resource type="PackedScene" uid="uid://bef2vrk816t1m" path="res://scenes/effects/Meteorexplosion_effect.tscn" id="3_deuvv"]
 

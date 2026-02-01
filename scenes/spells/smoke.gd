@@ -1,7 +1,5 @@
 extends Spell
 
-var source: Player
-
 
 func cast(cast_source: Player, _cast_direction: Vector2, _cast_rotation: float) -> void:
 	self.source = cast_source

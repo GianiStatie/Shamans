@@ -70,7 +70,15 @@ func _input(event: InputEvent) -> void:
 				
 			canvas_layer.press_button(i)
 			var spell_scene = spell_scenes[i]
-			state_machine.transition_to("CastOffensive", {"spell_scene": spell_scene})
+			var inst = spell_scene.instantiate()
+			var cast_type = "CastOffensive"
+			match inst.TYPE:
+				Spell.SPELL_TYPES.OFFENSIVE: cast_type = "CastOffensive"
+				Spell.SPELL_TYPES.DEFENSIVE: cast_type = "CastDeffensive"
+				Spell.SPELL_TYPES.SMOKE: cast_type = "CastSmoke"
+				Spell.SPELL_TYPES.UTILITY: cast_type = "CastUtility"
+			inst.free()
+			state_machine.transition_to(cast_type, {"spell_scene": spell_scene})
 
 
 func _physics_process(delta: float) -> void:

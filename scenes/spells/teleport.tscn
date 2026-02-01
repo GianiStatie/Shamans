@@ -55,6 +55,7 @@ MAX_SPEED = 600.0
 KNOCKBACK = 0.0
 DAMAGE = 0.0
 COOLDOWN = 8.0
+TYPE = 3
 ICON = ExtResource("3_dkksn")
 on_hit_effect = ExtResource("3_glrv3")
 velocity_curve = SubResource("Curve_s6xv8")
