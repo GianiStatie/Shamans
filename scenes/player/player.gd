@@ -39,6 +39,7 @@ var can_cast := true
 var dot := 0.0
 var dot_delta := 0.0
 var dot_interval := 1.0
+var is_using_mouse = true
 
 
 func _ready() -> void:
@@ -53,6 +54,12 @@ func _input(event: InputEvent) -> void:
 	
 	if player_dead: 
 		return
+	
+	if event is InputEventMouseMotion:
+		is_using_mouse = true
+	
+	if event is InputEventJoypadMotion:
+		is_using_mouse = false
 	
 	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
 		if not  canvas_layer.is_button_on_cooldown(0):
@@ -77,7 +84,8 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if can_move:
-		var cast_angle = (get_global_mouse_position() - global_position).angle()
+		var use_mouse = is_using_mouse and PLAYER_CONTROLLER == PLAYERS.PLAYER_1
+		var cast_angle = Utils.get_cast_angle(global_position, PLAYER_CONTROLLER, use_mouse)
 		var diff = wrapf(cast_angle - cast_marker.rotation, -PI, PI)
 		cast_marker.rotation += clamp(
 			diff,
