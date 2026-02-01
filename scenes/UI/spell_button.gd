@@ -1,10 +1,10 @@
-extends TextureButton
+class_name SpellButton extends MarginContainer
 
 var ON_COOLDOWN = false
 var COOLDOWN_TIME = 1.0
 var cooldown_delta = 0.0
 
-@onready var cooldown_indicator = $Cover
+@export var cooldown_indicator: TextureProgressBar
 
 
 func _ready() -> void:
@@ -24,13 +24,10 @@ func _physics_process(delta: float) -> void:
 
 
 func reset() -> void:
-	self.disabled = false
 	ON_COOLDOWN = false
 	cooldown_delta = 0.0
 	cooldown_indicator.value = 0.0
 
 
 func _on_pressed() -> void:
-	disabled = true
 	ON_COOLDOWN = true
-	

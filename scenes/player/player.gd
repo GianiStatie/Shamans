@@ -16,6 +16,10 @@ enum PLAYERS {
 @export var spell_0_scene: PackedScene
 @export var spell_1_scene: PackedScene
 
+# PLAYER SPELL BUTTONS
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var spell_0_button: SpellButton = %SpellButton_0
+
 @onready var cast_marker = $AttackMarker
 @onready var flippable_container = $Flippable
 @onready var state_machine = $StateMachine
@@ -25,19 +29,26 @@ enum PLAYERS {
 
 var input_vector := Vector2.ZERO
 var can_move := true
+var can_cast := true
 var dot := 0.0
 var dot_delta := 0.0
 var dot_interval := 1.0
 
 
 func _ready() -> void:
+	canvas_layer.set_player_layout(PLAYER_CONTROLLER)
 	var player_colors = Constants.player_colors["player_%s" % PLAYER_CONTROLLER]
 	self.material.set_shader_parameter("to_colors", player_colors)
 
 
 func _input(event: InputEvent) -> void:
+	if not can_cast:
+		return
+	
 	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
-		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
+		if not spell_0_button.ON_COOLDOWN:
+			spell_0_button._on_pressed()
+			state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
 	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
 		state_machine.transition_to("CastDefensive", {"spell_scene": spell_1_scene})
 
@@ -51,14 +62,15 @@ func _physics_process(delta: float) -> void:
 			-TURN_ACCELERATION * delta,
 			TURN_ACCELERATION * delta
 		)
-		
+	else:
+		input_vector = Vector2.ZERO
+	
+	if can_cast:
 		input_vector = Vector2(
 			Input.get_axis("player_%s_left" % PLAYER_CONTROLLER, "player_%s_right" % PLAYER_CONTROLLER),
 			Input.get_axis("player_%s_up" % PLAYER_CONTROLLER, "player_%s_down" % PLAYER_CONTROLLER)
 		).normalized()
 		update_facing_direction()
-	else:
-		input_vector = Vector2.ZERO
 	
 	var target_velocity = input_vector * MOVE_MAX_SPEED
 	if input_vector != Vector2.ZERO:
@@ -101,6 +113,9 @@ func update_facing_direction() -> void:
 func set_can_move(value: bool) -> void:
 	can_move = value
 
+
+func set_can_cast(value: bool) -> void:
+	can_cast = value
 
 func play_animation(animation_name: String) -> void:
 	animation_player.play(animation_name)

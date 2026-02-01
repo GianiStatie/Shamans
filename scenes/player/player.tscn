@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://buds2vedk7cyf" path="res://scenes/player/states/cast.gd" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://cn0p5156kh1jb" path="res://scenes/player/states/hit.gd" id="11_je7p5"]
 [ext_resource type="Texture2D" uid="uid://ktshf8t4vg2d" path="res://assets/player/large_shadow.png" id="15_fcs02"]
+[ext_resource type="Script" uid="uid://cjbbvxpf3d85g" path="res://scenes/UI/player_spell_canvas.gd" id="15_kvlxm"]
 [ext_resource type="Texture2D" uid="uid://wd23b6bbytjk" path="res://assets/UI/icons/139.png" id="15_myrg7"]
 [ext_resource type="Script" uid="uid://c0v53vgkhy5uy" path="res://scenes/UI/spell_button.gd" id="16_myrg7"]
 
@@ -237,29 +238,29 @@ script = ExtResource("11_je7p5")
 libraries/ = SubResource("AnimationLibrary_5gtgg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1152906301]
+script = ExtResource("15_kvlxm")
 
-[node name="SpellButton" type="TextureButton" parent="CanvasLayer" unique_id=480285137]
+[node name="SpellButton_0" type="MarginContainer" parent="CanvasLayer" unique_id=857127591 node_paths=PackedStringArray("cooldown_indicator")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -64.0
-offset_right = 64.0
+offset_top = -40.0
+offset_right = 40.0
 grow_vertical = 0
-size_flags_horizontal = 0
-size_flags_vertical = 8
-texture_normal = ExtResource("15_myrg7")
-ignore_texture_size = true
-stretch_mode = 0
 script = ExtResource("16_myrg7")
+cooldown_indicator = NodePath("Cover")
 
-[node name="Cover" type="TextureProgressBar" parent="CanvasLayer/SpellButton" unique_id=200686158]
-clip_children = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellButton_0" unique_id=1193414890]
+show_behind_parent = true
+layout_mode = 2
+texture = ExtResource("15_myrg7")
+expand_mode = 1
+
+[node name="Cover" type="TextureProgressBar" parent="CanvasLayer/SpellButton_0" unique_id=200686158]
+layout_mode = 2
+mouse_filter = 2
 max_value = 1.0
 step = 0.01
 value = 0.35
@@ -274,4 +275,3 @@ texture_progress = SubResource("GradientTexture1D_myrg7")
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastOffensive" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastDefensive" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hit" method="_on_animation_player_animation_finished"]
-[connection signal="pressed" from="CanvasLayer/SpellButton" to="CanvasLayer/SpellButton" method="_on_pressed"]
