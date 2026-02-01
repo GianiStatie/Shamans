@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ci6lf81robdpp"
+path="res://.godot/imported/Trap Soul Drum Loop 96 BPM.mp3-ff6ce42d1d4cf828a342f04694a58148.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/Trap Soul Drum Loop 96 BPM.mp3"
+dest_files=["res://.godot/imported/Trap Soul Drum Loop 96 BPM.mp3-ff6ce42d1d4cf828a342f04694a58148.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

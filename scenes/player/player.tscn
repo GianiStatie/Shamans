@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://balqudfjryl06" path="res://scenes/spells/anivia_wall.tscn" id="4_fcs02"]
 [ext_resource type="PackedScene" uid="uid://dmjr2i4ngq6qd" path="res://scenes/boomerang.tscn" id="5_fcs02"]
-[ext_resource type="PackedScene" uid="uid://cahrj3owxrhl4" path="res://scenes/spells/Meteor.tscn" id="6_myrg7"]
+[ext_resource type="PackedScene" uid="uid://ctxi17gackdq6" path="res://scenes/spells/teleport.tscn" id="6_lgqa7"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://rf4a4mwbccki" path="res://scenes/player/states/move.gd" id="9_5gtgg"]
@@ -177,7 +177,7 @@ TURN_ACCELERATION = 5.0
 spell_0_scene = ExtResource("2_p47bc")
 spell_1_scene = ExtResource("4_fcs02")
 spell_2_scene = ExtResource("5_fcs02")
-spell_3_scene = ExtResource("6_myrg7")
+spell_3_scene = ExtResource("6_lgqa7")
 hurt_SFX = NodePath("AudioStreamPlayer2D")
 hurtbox_collision = NodePath("Hurtbox/CollisionShape2D")
 

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://caf6gburf7aim" path="res://scenes/spells/MeteorIncoming.tscn" id="3_0wh1f"]
 [ext_resource type="Texture2D" uid="uid://t1gdh0d55id7" path="res://assets/UI/icons/6.png" id="3_t5d4b"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="4_ff6e3"]
+[ext_resource type="AudioStream" uid="uid://c575fleo3iqic" path="res://assets/audio/hit5_softMedium_long.wav" id="5_t5d4b"]
 
 [sub_resource type="Curve" id="Curve_t5d4b"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -59,5 +60,11 @@ shape = SubResource("CircleShape2D_0wh1f")
 
 [node name="Timer" parent="." index="2" unique_id=260913630]
 wait_time = 0.2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3" unique_id=1114804627]
+stream = ExtResource("5_t5d4b")
+volume_db = 22.061
+autoplay = true
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
