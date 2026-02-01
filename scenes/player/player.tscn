@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://ckwnan2icfl6g" path="res://scenes/spells/smoke.tscn" id="4_yj68g"]
 [ext_resource type="PackedScene" uid="uid://dj27cut2j6bk4" path="res://scenes/spells/hook.tscn" id="5_cnsyf"]
-[ext_resource type="PackedScene" uid="uid://cwf3mpwx5mhh6" path="res://scenes/spells/Meteor.tscn" id="6_myrg7"]
+[ext_resource type="PackedScene" uid="uid://du8hbv75y3ytd" path="res://scenes/spells/Meteor.tscn" id="6_myrg7"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Texture2D" uid="uid://l4ytno1d3obv" path="res://assets/player/money wizard.png" id="7_yj68g"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]

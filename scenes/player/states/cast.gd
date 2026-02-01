@@ -20,7 +20,6 @@ func handle_passed_spell(spell_scene):
 		var speed_scale = anim_length / inst.CAST_DELAY
 		owner.animation_player.speed_scale = speed_scale
 	
-	print("playing: ", self.name)
 	owner.play_animation(self.name)
 	owner.set_can_cast(false)
 	
