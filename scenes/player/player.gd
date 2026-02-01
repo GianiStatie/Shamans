@@ -32,6 +32,7 @@ var player_dead = false
 
 # SFX
 @export var hurt_SFX: AudioStreamPlayer2D
+@export var taunt_SFX: AudioStreamPlayer2D
 @export var hurtbox_collision: CollisionShape2D
 
 var input_vector := Vector2.ZERO
@@ -161,6 +162,9 @@ func play_animation(animation_name: String) -> void:
 
 func play_sound() -> void:
 	hurt_SFX.play()
+
+func play_tauntSFX() -> void:
+	taunt_SFX.play()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Spell") or area.is_in_group("Explosion"):
