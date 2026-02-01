@@ -61,7 +61,7 @@ tile_set = SubResource("TileSet_272bh")
 script = ExtResource("5_7mycd")
 
 [node name="Timer" type="Timer" parent="TileMapLayer" unique_id=8616257]
-wait_time = 1.5
+wait_time = 10.0
 autostart = true
 
 [node name="PlayerContainer" type="Node2D" parent="." unique_id=1167464607]
