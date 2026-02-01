@@ -91,6 +91,7 @@ drag_right_margin = 0.3
 drag_bottom_margin = 0.3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=755728180]
+visible = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=302922734]
 z_index = 4096
@@ -100,6 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("7_5vw27")
 
 [node name="Label" type="Label" parent="CanvasLayer/TextureRect" unique_id=1072825776]
