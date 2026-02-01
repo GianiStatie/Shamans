@@ -44,6 +44,7 @@ animations = [{
 collision_layer = 16
 collision_mask = 79
 script = ExtResource("1_olwj8")
+CAST_DELAY = 0.6
 MAX_SPEED = 300.0
 DAMAGE = 5.0
 on_hit_effect = ExtResource("2_fnao3")

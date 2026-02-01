@@ -1,5 +1,6 @@
 class_name Spell extends Area2D
 
+@export var CAST_DELAY: float = 0.0
 @export var MAX_SPEED: float = 0.0
 @export var KNOCKBACK: float = 0.0
 @export var DAMAGE: float = 0.0
