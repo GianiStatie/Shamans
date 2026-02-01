@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c8qmd4d8r6v88"]
+[gd_scene format=3 uid="uid://cwf3mpwx5mhh6"]
 
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_0wh1f"]
 [ext_resource type="Script" uid="uid://b518gungrry0w" path="res://scenes/spells/meteor.gd" id="2_jfmlb"]

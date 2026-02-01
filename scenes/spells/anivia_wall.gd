@@ -3,6 +3,7 @@ extends Spell
 
 
 func cast(cast_source: Player, cast_direction: Vector2, cast_rotation: float) -> void:
+	print("wall spawned")
 	self.source = null
 
 

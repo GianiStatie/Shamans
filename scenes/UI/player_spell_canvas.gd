@@ -22,6 +22,7 @@ func press_button(button_idx: int) -> void:
 
 
 func set_player_layout(player_index: int, spell_info: Array) -> void:
+	reset()
 	current_player_container = player_containers[player_index]
 	
 	for info in spell_info:
@@ -29,3 +30,10 @@ func set_player_layout(player_index: int, spell_info: Array) -> void:
 		current_player_container.add_child(button)
 		button.update_stats(info.get("cooldown"), info.get("icon"))
 		button_ref.append(button)
+
+
+func reset():
+	button_ref = []
+	for child in current_player_container.get_children():
+		current_player_container.remove_child(child)
+		child.queue_free()

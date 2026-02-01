@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://scenes/player/player_attack_marker.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://ckwnan2icfl6g" path="res://scenes/spells/smoke.tscn" id="4_yj68g"]
-[ext_resource type="PackedScene" uid="uid://dj27cut2j6bk4" path="res://scenes/spells/Hook.tscn" id="5_ioxgp"]
-[ext_resource type="PackedScene" uid="uid://cahrj3owxrhl4" path="res://scenes/spells/Meteor.tscn" id="6_myrg7"]
+[ext_resource type="PackedScene" uid="uid://dj27cut2j6bk4" path="res://scenes/spells/hook.tscn" id="5_cnsyf"]
+[ext_resource type="PackedScene" uid="uid://cwf3mpwx5mhh6" path="res://scenes/spells/Meteor.tscn" id="6_myrg7"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Texture2D" uid="uid://l4ytno1d3obv" path="res://assets/player/money wizard.png" id="7_yj68g"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://cchsfiguk3nwk" path="res://assets/audio/RIZZ Sound Effect.wav" id="19_3j4b4"]
 [ext_resource type="Script" uid="uid://cjbbvxpf3d85g" path="res://scenes/UI/player_spell_canvas.gd" id="20_8ydkj"]
 [ext_resource type="PackedScene" uid="uid://berq6h2fenavr" path="res://scenes/UI/spell_button.tscn" id="21_3j4b4"]
+[ext_resource type="PackedScene" uid="uid://bb83nlmo8phqt" path="res://scenes/UI/spell_select.tscn" id="23_cnsyf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gx1jg"]
 resource_local_to_scene = true
@@ -234,7 +235,7 @@ MOVE_FRICTION = 100.0
 TURN_ACCELERATION = 5.0
 spell_0_scene = ExtResource("2_p47bc")
 spell_1_scene = ExtResource("4_yj68g")
-spell_2_scene = ExtResource("5_ioxgp")
+spell_2_scene = ExtResource("5_cnsyf")
 spell_3_scene = ExtResource("6_myrg7")
 hurt_SFX = NodePath("AudioStreamPlayer2D")
 taunt_SFX = NodePath("AudioStreamPlayer2D3")
@@ -368,6 +369,21 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="SpellSelect_0" parent="CanvasLayer" unique_id=327952404 instance=ExtResource("23_cnsyf")]
+unique_name_in_owner = true
+offset_top = -260.0
+offset_right = 404.0
+
+[node name="SpellSelect_1" parent="CanvasLayer" unique_id=1030933759 instance=ExtResource("23_cnsyf")]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -404.0
+offset_top = -260.0
+offset_right = 0.0
+grow_horizontal = 0
+
 [connection signal="player_health_zero" from="Stats" to="." method="_on_stats_player_health_zero"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
@@ -379,3 +395,5 @@ grow_vertical = 0
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastUtility" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hit" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Taunt" method="_on_animation_player_animation_finished"]
+[connection signal="spells_selected" from="CanvasLayer/SpellSelect_0" to="." method="_on_spells_selected"]
+[connection signal="spells_selected" from="CanvasLayer/SpellSelect_1" to="." method="_on_spells_selected"]

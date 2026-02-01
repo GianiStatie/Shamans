@@ -74,14 +74,12 @@ material = SubResource("ShaderMaterial_272bh")
 position = Vector2(-273, 204)
 TURN_ACCELERATION = 100.0
 playerNumber = 2
-main = NodePath("../..")
 
 [node name="Player2" parent="PlayerContainer" unique_id=783978056 instance=ExtResource("1_ig7tw")]
 material = SubResource("ShaderMaterial_5vw27")
 position = Vector2(178, 212)
 PLAYER_CONTROLLER = 1
 playerNumber = 1
-main = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1636683370]
 position = Vector2(329, 108)
@@ -129,4 +127,6 @@ autoplay = true
 bus = &"Music"
 
 [connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_shrink_timer_timeout"]
+[connection signal="spells_are_ready" from="PlayerContainer/Player" to="." method="_on_player_spells_are_ready"]
+[connection signal="spells_are_ready" from="PlayerContainer/Player2" to="." method="_on_player_spells_are_ready"]
 [connection signal="pressed" from="CanvasLayer/TextureRect/Button" to="." method="_on_button_pressed"]

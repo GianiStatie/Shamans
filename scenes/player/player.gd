@@ -13,6 +13,7 @@ enum PLAYERS {
 @export var PLAYER_CONTROLLER: PLAYERS = PLAYERS.PLAYER_1
 
 var player_dead = false
+var is_ready = false
 
 # PLAYER SPELLS
 @export var spell_0_scene: PackedScene
@@ -29,6 +30,8 @@ var player_dead = false
 @onready var state_machine = $StateMachine
 @onready var animation_player = $AnimationPlayer
 @onready var stats = $Stats
+@onready var spell_ui_0 = %SpellSelect_0
+@onready var spell_ui_1 = %SpellSelect_1
 @export var playerNumber: int
 
 @export var main: Node2D
@@ -46,8 +49,16 @@ var dot_delta := 0.0
 var dot_interval := 1.0
 var is_using_mouse = true
 
+signal spells_are_ready
+
 
 func _ready() -> void:
+	if PLAYER_CONTROLLER == 0:
+		spell_ui_0.visible = true
+		spell_ui_1.visible = false
+	elif PLAYER_CONTROLLER == 1:
+		spell_ui_0.visible = false
+		spell_ui_1.visible = true
 	init_spell_ui()
 	var player_colors = Constants.player_colors["player_%s" % PLAYER_CONTROLLER]
 	self.material.set_shader_parameter("to_colors", player_colors)
@@ -57,7 +68,7 @@ func _input(event: InputEvent) -> void:
 	if not can_cast:
 		return
 	
-	if player_dead: 
+	if not is_ready or player_dead: 
 		return
 	
 	if event is InputEventMouseMotion:
@@ -79,17 +90,19 @@ func _input(event: InputEvent) -> void:
 			var spell_scene = spell_scenes[i]
 			var inst = spell_scene.instantiate()
 			var cast_type = "CastOffensive"
+			
 			match inst.TYPE:
 				Spell.SPELL_TYPES.OFFENSIVE: cast_type = "CastOffensive"
-				Spell.SPELL_TYPES.DEFENSIVE: cast_type = "CastDeffensive"
+				Spell.SPELL_TYPES.DEFENSIVE: cast_type = "CastDefensive"
 				Spell.SPELL_TYPES.SMOKE: cast_type = "CastSmoke"
 				Spell.SPELL_TYPES.UTILITY: cast_type = "CastUtility"
+			
 			inst.free()
 			state_machine.transition_to(cast_type, {"spell_scene": spell_scene})
 
 
 func _physics_process(delta: float) -> void:
-	if player_dead: 
+	if not is_ready or player_dead: 
 		return
 	
 	if can_move:
@@ -176,6 +189,7 @@ func play_sound() -> void:
 func play_tauntSFX() -> void:
 	taunt_SFX.play()
 
+
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Spell") or area.is_in_group("Explosion"):
 		if area.source == self:
@@ -200,3 +214,13 @@ func _on_stats_player_health_zero() -> void:
 	player_dead = true
 	main.ShowWinScreen(playerNumber)
 	state_machine.transition_to("Death")
+
+
+func _on_spells_selected(selected_spell_scenes: Variant) -> void:
+	spell_0_scene = selected_spell_scenes[0]
+	spell_1_scene = selected_spell_scenes[1]
+	spell_2_scene = selected_spell_scenes[2]
+	spell_3_scene = selected_spell_scenes[3]
+	spell_scenes = [spell_0_scene, spell_1_scene, spell_2_scene, spell_3_scene]
+	init_spell_ui()
+	spells_are_ready.emit()
