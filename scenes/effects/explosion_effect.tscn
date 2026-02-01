@@ -55,6 +55,7 @@ stream_0/stream = ExtResource("3_k6p1u")
 stream_1/stream = ExtResource("4_f0pw8")
 
 [node name="ExplosionEffect" unique_id=1538342731 instance=ExtResource("1_5ssc0")]
+KNOCKBACK = 175.0
 DAMAGE = 5.0
 
 [node name="ExplosionEffect" parent="." index="1" unique_id=174993004]

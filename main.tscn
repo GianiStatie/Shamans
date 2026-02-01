@@ -39,14 +39,14 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_7mycd")
 sources/1 = SubResource("TileSetAtlasSource_272bh")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
 resource_local_to_scene = true
 shader = ExtResource("2_h2yge")
 shader_parameter/from_colors = PackedColorArray(0.9843137, 0.23921569, 0.21176471, 1, 0.7607843, 0.19607843, 0.1764706, 1, 0.2, 0.09411765, 0.09019608, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/to_colors = PackedColorArray(0.8784314, 0.011764706, 0.003921569, 1, 0.54509807, 0, 0.007843138, 1, 0.003921569, 0.003921569, 0.003921569, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/tolerance = 0.01
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek77"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
 resource_local_to_scene = true
 shader = ExtResource("2_h2yge")
 shader_parameter/from_colors = PackedColorArray(0.9843137, 0.23921569, 0.21176471, 1, 0.7607843, 0.19607843, 0.1764706, 1, 0.2, 0.09411765, 0.09019608, 1, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -61,23 +61,30 @@ tile_set = SubResource("TileSet_272bh")
 script = ExtResource("5_7mycd")
 
 [node name="Timer" type="Timer" parent="TileMapLayer" unique_id=8616257]
-wait_time = 0.5
+wait_time = 1.5
 autostart = true
 
 [node name="PlayerContainer" type="Node2D" parent="." unique_id=1167464607]
 y_sort_enabled = true
 
 [node name="Player" parent="PlayerContainer" unique_id=1304335232 instance=ExtResource("1_ig7tw")]
-material = SubResource("ShaderMaterial_5vw27")
+material = SubResource("ShaderMaterial_7mycd")
 position = Vector2(-273, 204)
+TURN_ACCELERATION = 100.0
 
 [node name="Player2" parent="PlayerContainer" unique_id=783978056 instance=ExtResource("1_ig7tw")]
-material = SubResource("ShaderMaterial_kek77")
+material = SubResource("ShaderMaterial_272bh")
 position = Vector2(178, 212)
 PLAYER_CONTROLLER = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1636683370]
 position = Vector2(329, 108)
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_left_margin = 0.3
+drag_top_margin = 0.3
+drag_right_margin = 0.3
+drag_bottom_margin = 0.3
 
 [connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_shrink_timer_timeout"]

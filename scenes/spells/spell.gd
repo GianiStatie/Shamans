@@ -1,5 +1,6 @@
 class_name Spell extends Area2D
 
+@export var CAST_DELAY: float = 0.0
 @export var MAX_SPEED: float = 0.0
 @export var KNOCKBACK: float = 0.0
 @export var DAMAGE: float = 0.0
@@ -8,6 +9,7 @@ class_name Spell extends Area2D
 
 @onready var timer: Timer = $Timer
 
+var source: Player
 
 func cast(_cast_source: Player, _cast_direction: Vector2, _cast_rotation: float) -> void:
 	pass

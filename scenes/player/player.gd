@@ -17,6 +17,8 @@ var player_dead = false
 # PLAYER SPELLS
 @export var spell_0_scene: PackedScene
 @export var spell_1_scene: PackedScene
+@export var spell_2_scene: PackedScene
+@export var spell_3_scene: PackedScene
 
 @onready var cast_marker = $AttackMarker
 @onready var flippable_container = $Flippable
@@ -47,19 +49,25 @@ func _input(event: InputEvent) -> void:
 		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
 	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
 		state_machine.transition_to("CastDefensive", {"spell_scene": spell_1_scene})
+	elif event.is_action_pressed("player_%s_spell_2" % PLAYER_CONTROLLER):
+		state_machine.transition_to("CastDefensive", {"spell_scene": spell_2_scene})
+	elif event.is_action_pressed("player_%s_spell_3" % PLAYER_CONTROLLER):
+		state_machine.transition_to("CastDefensive", {"spell_scene": spell_3_scene})
 
 
 func _physics_process(delta: float) -> void:
-	if (player_dead): return
-	var cast_angle = (get_global_mouse_position() - global_position).angle()
-	var diff = wrapf(cast_angle - cast_marker.rotation, -PI, PI)
-	cast_marker.rotation += clamp(
-		diff,
-		-TURN_ACCELERATION * delta,
-		TURN_ACCELERATION * delta
-	)
+	if player_dead: 
+		return
 	
 	if can_move:
+		var cast_angle = (get_global_mouse_position() - global_position).angle()
+		var diff = wrapf(cast_angle - cast_marker.rotation, -PI, PI)
+		cast_marker.rotation += clamp(
+			diff,
+			-TURN_ACCELERATION * delta,
+			TURN_ACCELERATION * delta
+		)
+		
 		input_vector = Vector2(
 			Input.get_axis("player_%s_left" % PLAYER_CONTROLLER, "player_%s_right" % PLAYER_CONTROLLER),
 			Input.get_axis("player_%s_up" % PLAYER_CONTROLLER, "player_%s_down" % PLAYER_CONTROLLER)
@@ -90,13 +98,18 @@ func cast_spell(spell_scene: PackedScene):
 	var spell_direction = global_position.direction_to(spell_position).normalized()
 	var spell_object = Utils.instantiate_object_in_scene(spell_scene, spell_position)
 	spell_object.cast(self, spell_direction, spell_angle)
-	update_facing_direction(sign(spell_direction.x))
 
 
-func update_facing_direction(facing_direction = 0) -> void:
-	if facing_direction == 0:
-		facing_direction = sign(velocity.x)
-	
+func update_facing_diection_cast() -> void:
+	var spell_position = cast_marker.get_attack_position()
+	var spell_direction = global_position.direction_to(spell_position).normalized()
+	var facing_direction = sign(spell_direction.x)
+	if facing_direction != 0:
+		flippable_container.scale.x = facing_direction
+
+
+func update_facing_direction() -> void:
+	var facing_direction = sign(velocity.x)
 	if facing_direction != 0:
 		flippable_container.scale.x = facing_direction
 
