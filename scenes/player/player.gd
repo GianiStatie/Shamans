@@ -15,6 +15,7 @@ enum PLAYERS {
 # PLAYER SPELLS
 @export var spell_0_scene: PackedScene
 @export var spell_1_scene: PackedScene
+@export var spell_2_scene: PackedScene
 
 @onready var cast_marker = $AttackMarker
 @onready var flippable_container = $Flippable
@@ -40,6 +41,8 @@ func _input(event: InputEvent) -> void:
 		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
 	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
 		state_machine.transition_to("CastDefensive", {"spell_scene": spell_1_scene})
+	elif event.is_action_pressed("player_%s_spell_2" % PLAYER_CONTROLLER):
+		state_machine.transition_to("CastDefensive", {"spell_scene": spell_2_scene})
 
 
 func _physics_process(delta: float) -> void:

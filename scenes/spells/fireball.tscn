@@ -38,11 +38,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnao3"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_wk21o"]
 
 [node name="Fireball" unique_id=1366827963 instance=ExtResource("1_ql5qc")]
 collision_layer = 16
-collision_mask = 79
+collision_mask = 95
 script = ExtResource("1_olwj8")
 CAST_DELAY = 0.6
 MAX_SPEED = 300.0
@@ -54,7 +54,7 @@ velocity_curve = SubResource("Curve_wk21o")
 sprite_frames = SubResource("SpriteFrames_vaqcd")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=1914504540]
-shape = SubResource("RectangleShape2D_fnao3")
+shape = SubResource("CircleShape2D_wk21o")
 
 [node name="Timer" parent="." index="2" unique_id=260913630]
 wait_time = 1.45

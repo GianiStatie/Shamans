@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://scenes/player/player_attack_marker.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://balqudfjryl06" path="res://scenes/spells/anivia_wall.tscn" id="4_fcs02"]
+[ext_resource type="PackedScene" uid="uid://dmjr2i4ngq6qd" path="res://scenes/boomerang.tscn" id="5_fcs02"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
 [ext_resource type="Script" uid="uid://bymwbjfjprsl7" path="res://scenes/player/states/idle.gd" id="8_qek5x"]
 [ext_resource type="Script" uid="uid://rf4a4mwbccki" path="res://scenes/player/states/move.gd" id="9_5gtgg"]
@@ -144,6 +145,7 @@ MOVE_FRICTION = 100.0
 TURN_ACCELERATION = 5.0
 spell_0_scene = ExtResource("2_p47bc")
 spell_1_scene = ExtResource("4_fcs02")
+spell_2_scene = ExtResource("5_fcs02")
 
 [node name="Flippable" type="Node2D" parent="." unique_id=554518734]
 use_parent_material = true
