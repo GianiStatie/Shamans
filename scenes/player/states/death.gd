@@ -1,4 +1,4 @@
-class_name HitState extends State
+class_name DeathState extends State
 
 
 func enter(_msg := {}) -> void:
@@ -13,7 +13,4 @@ func exit() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == self.name:
-		if (owner.player_dead):
-			state_machine.transition_to("Death")
-		else:
-			state_machine.transition_to("Idle")
+		state_machine.transition_to("Idle")

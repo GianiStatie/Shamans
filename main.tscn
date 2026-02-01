@@ -79,6 +79,7 @@ PLAYER_CONTROLLER = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1636683370]
 position = Vector2(329, 108)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 drag_left_margin = 0.3

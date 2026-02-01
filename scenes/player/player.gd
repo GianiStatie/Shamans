@@ -12,6 +12,8 @@ enum PLAYERS {
 @export var TURN_ACCELERATION = 7.0 
 @export var PLAYER_CONTROLLER: PLAYERS = PLAYERS.PLAYER_1
 
+var player_dead = false
+
 # PLAYER SPELLS
 @export var spell_0_scene: PackedScene
 @export var spell_1_scene: PackedScene
@@ -24,6 +26,10 @@ enum PLAYERS {
 @onready var animation_player = $AnimationPlayer
 @onready var stats = $Stats
 
+# SFX
+@export var hurt_SFX: AudioStreamPlayer2D
+
+@export var hurtbox_collision: CollisionShape2D
 
 var input_vector := Vector2.ZERO
 var can_move := true
@@ -38,6 +44,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if (player_dead): return
 	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
 		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
 	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
@@ -49,6 +56,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if player_dead: 
+		return
+	
 	if can_move:
 		var cast_angle = (get_global_mouse_position() - global_position).angle()
 		var diff = wrapf(cast_angle - cast_marker.rotation, -PI, PI)
@@ -111,6 +121,8 @@ func set_can_move(value: bool) -> void:
 func play_animation(animation_name: String) -> void:
 	animation_player.play(animation_name)
 
+func play_sound() -> void:
+	hurt_SFX.play()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Spell") or area.is_in_group("Explosion"):
@@ -130,3 +142,8 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 func _on_hurtbox_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Lava"):
 		dot = max(dot - 5, 0.0)
+
+
+func _on_stats_player_health_zero() -> void:
+	player_dead = true
+	state_machine.transition_to("Death")

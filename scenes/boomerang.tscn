@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmjr2i4ngq6qd"]
 
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_xwptw"]
-[ext_resource type="Script" uid="uid://d4brlxojgior7" path="res://scenes/spells/boomerang.gd" id="2_6uhra"]
+[ext_resource type="Script" path="res://scenes/spells/boomerang.gd" id="2_6uhra"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="2_q1dmq"]
 [ext_resource type="PackedScene" uid="uid://cahfkxro1w3hb" path="res://scenes/effects/boomerang_effect.tscn" id="3_452nj"]
 [ext_resource type="Curve" uid="uid://cu2kufqy5e0if" path="res://scenes/spells/boomerang_SpeedCruve.tres" id="3_lfx52"]
