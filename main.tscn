@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://kg1siaalllt0" path="res://assets/terrain/MagmaTileAnimation.png" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://drcyustd2cw01" path="res://assets/terrain/floorTileset.webp" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://bcu27hkdc0k48" path="res://tilemap_arena.gd" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://nyou0pkx5fnq" path="res://assets/UI/Win Screen.png" id="7_5vw27"]
 [ext_resource type="AudioStream" uid="uid://bf8e5ff7rgf04" path="res://assets/audio/Vilified (2012).mp3" id="7_272bh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
@@ -63,7 +64,7 @@ tile_set = SubResource("TileSet_272bh")
 script = ExtResource("5_7mycd")
 
 [node name="Timer" type="Timer" parent="TileMapLayer" unique_id=8616257]
-wait_time = 10.0
+wait_time = 3.0
 autostart = true
 
 [node name="PlayerContainer" type="Node2D" parent="." unique_id=1167464607]
@@ -73,13 +74,11 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_272bh")
 position = Vector2(-273, 204)
 TURN_ACCELERATION = 100.0
-playerNumber = 2
 
 [node name="Player2" parent="PlayerContainer" unique_id=783978056 instance=ExtResource("1_ig7tw")]
 material = SubResource("ShaderMaterial_5vw27")
 position = Vector2(178, 212)
 PLAYER_CONTROLLER = 1
-playerNumber = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1636683370]
 position = Vector2(329, 108)
@@ -92,7 +91,6 @@ drag_right_margin = 0.3
 drag_bottom_margin = 0.3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=755728180]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=302922734]
 z_index = 4096
@@ -102,6 +100,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("7_5vw27")
 
 [node name="Label" type="Label" parent="CanvasLayer/TextureRect" unique_id=1072825776]
 layout_mode = 0
@@ -127,6 +126,8 @@ autoplay = true
 bus = &"Music"
 
 [connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_shrink_timer_timeout"]
+[connection signal="player_died" from="PlayerContainer/Player" to="." method="_on_player_player_died"]
 [connection signal="spells_are_ready" from="PlayerContainer/Player" to="." method="_on_player_spells_are_ready"]
+[connection signal="player_died" from="PlayerContainer/Player2" to="." method="_on_player_player_died"]
 [connection signal="spells_are_ready" from="PlayerContainer/Player2" to="." method="_on_player_spells_are_ready"]
 [connection signal="pressed" from="CanvasLayer/TextureRect/Button" to="." method="_on_button_pressed"]

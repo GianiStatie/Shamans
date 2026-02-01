@@ -11,12 +11,13 @@ var players_ready_cnt: int = 0
 
 
 func _ready() -> void:
+	Canvas.visible = false
 	safe_camera_margin = (get_viewport_rect().size / 2) * 0.7
 	initial_zoom = camera.zoom
 
 func ShowWinScreen(playerNumber: int) -> void:
 	Canvas.visible = true
-	lbl.text = "Player " + str(playerNumber) + " wins!"
+	lbl.text = "Player " + str(playerNumber) + " took a big L!"
 
 func _physics_process(_delta: float) -> void:
 	var min_pos = Vector2.INF
@@ -47,3 +48,7 @@ func _on_player_spells_are_ready() -> void:
 	
 func _on_button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_player_player_died(player_number: int) -> void:
+	ShowWinScreen(player_number)
