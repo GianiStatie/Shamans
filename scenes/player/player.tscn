@@ -17,8 +17,10 @@
 [ext_resource type="Script" uid="uid://cn0p5156kh1jb" path="res://scenes/player/states/hit.gd" id="11_je7p5"]
 [ext_resource type="Texture2D" uid="uid://ktshf8t4vg2d" path="res://assets/player/large_shadow.png" id="15_fcs02"]
 [ext_resource type="AudioStream" uid="uid://be4pqyrbvpbpy" path="res://assets/audio/Hobgob_Death.wav" id="16_kvlxm"]
-[ext_resource type="Script" path="res://scenes/player/states/death.gd" id="16_uf5tr"]
+[ext_resource type="Script" uid="uid://hck5avjrgx6s" path="res://scenes/player/states/death.gd" id="16_uf5tr"]
 [ext_resource type="AudioStream" uid="uid://1xu2exty7igw" path="res://assets/audio/Hobgob_Death2.wav" id="17_uf5tr"]
+[ext_resource type="Script" uid="uid://cjbbvxpf3d85g" path="res://scenes/UI/player_spell_canvas.gd" id="20_8ydkj"]
+[ext_resource type="PackedScene" uid="uid://berq6h2fenavr" path="res://scenes/UI/spell_button.tscn" id="21_3j4b4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gx1jg"]
 resource_local_to_scene = true
@@ -268,6 +270,29 @@ libraries/ = SubResource("AnimationLibrary_5gtgg")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2001253489]
 stream = SubResource("AudioStreamRandomizer_kvlxm")
 bus = &"SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=649475541]
+script = ExtResource("20_8ydkj")
+button_scene = ExtResource("21_3j4b4")
+
+[node name="PlayerContainer_0" type="HBoxContainer" parent="CanvasLayer" unique_id=1429919169]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="PlayerContainer_1" type="HBoxContainer" parent="CanvasLayer" unique_id=120255298]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [connection signal="player_health_zero" from="Stats" to="." method="_on_stats_player_health_zero"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

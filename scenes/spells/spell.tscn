@@ -1,11 +1,17 @@
 [gd_scene format=3 uid="uid://bn4627jhgsbhs"]
 
 [ext_resource type="Script" uid="uid://3j284gy0h460" path="res://scenes/spells/spell.gd" id="1_3harv"]
+[ext_resource type="Texture2D" uid="uid://l05hk8icllsj" path="res://assets/UI/icons/default.png" id="2_3harv"]
 
 [node name="Spell" type="Area2D" unique_id=1366827963 groups=["Spell"]]
 collision_layer = 0
 collision_mask = 15
 script = ExtResource("1_3harv")
+CAST_DELAY = null
+MAX_SPEED = null
+KNOCKBACK = null
+DAMAGE = null
+ICON = ExtResource("2_3harv")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=64191743]
 scale = Vector2(0.8, 0.8)
