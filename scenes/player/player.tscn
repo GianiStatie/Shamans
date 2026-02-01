@@ -218,14 +218,8 @@ script = ExtResource("9_5gtgg")
 [node name="CastOffensive" type="Node" parent="StateMachine" unique_id=844071179]
 script = ExtResource("10_h17s1")
 
-[node name="Timer" type="Timer" parent="StateMachine/CastOffensive" unique_id=972116949]
-one_shot = true
-
 [node name="CastDefensive" type="Node" parent="StateMachine" unique_id=931839397]
 script = ExtResource("10_h17s1")
-
-[node name="Timer" type="Timer" parent="StateMachine/CastDefensive" unique_id=455268420]
-one_shot = true
 
 [node name="Hit" type="Node" parent="StateMachine" unique_id=393814450]
 script = ExtResource("11_je7p5")
@@ -238,4 +232,5 @@ libraries/ = SubResource("AnimationLibrary_5gtgg")
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 [connection signal="body_shape_entered" from="Hurtbox" to="." method="_on_hurtbox_body_shape_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastOffensive" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/CastDefensive" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Hit" method="_on_animation_player_animation_finished"]
