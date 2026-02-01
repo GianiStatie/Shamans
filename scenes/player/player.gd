@@ -19,6 +19,7 @@ var player_dead = false
 @export var spell_1_scene: PackedScene
 @export var spell_2_scene: PackedScene
 @export var spell_3_scene: PackedScene
+@onready var spell_scenes = [spell_0_scene, spell_1_scene, spell_2_scene, spell_3_scene]
 
 # PLAYER SPELL BUTTONS
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
@@ -61,22 +62,14 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadMotion:
 		is_using_mouse = false
 	
-	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
-		if not  canvas_layer.is_button_on_cooldown(0):
-			canvas_layer.press_button(0)
-		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
-	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
-		if not  canvas_layer.is_button_on_cooldown(1):
-			canvas_layer.press_button(1)
-		state_machine.transition_to("CastDefensive", {"spell_scene": spell_1_scene})
-	elif event.is_action_pressed("player_%s_spell_2" % PLAYER_CONTROLLER):
-		if not  canvas_layer.is_button_on_cooldown(2):
-			canvas_layer.press_button(2)
-		state_machine.transition_to("CastDefensive", {"spell_scene": spell_2_scene})
-	elif event.is_action_pressed("player_%s_spell_3" % PLAYER_CONTROLLER):
-		if not canvas_layer.is_button_on_cooldown(3):
-			canvas_layer.press_button(3)
-		state_machine.transition_to("CastDefensive", {"spell_scene": spell_3_scene})
+	for i in range(len(spell_scenes)):
+		if event.is_action_pressed("player_%s_spell_%s" % [PLAYER_CONTROLLER, i]):
+			if canvas_layer.is_button_on_cooldown(i):
+				continue
+				
+			canvas_layer.press_button(i)
+			var spell_scene = spell_scenes[i]
+			state_machine.transition_to("CastOffensive", {"spell_scene": spell_scene})
 
 
 func _physics_process(delta: float) -> void:
@@ -130,7 +123,6 @@ func init_spell_ui() -> void:
 		})
 		inst.free()
 	
-	print(spell_info)
 	canvas_layer.set_player_layout(PLAYER_CONTROLLER, spell_info)
 
 

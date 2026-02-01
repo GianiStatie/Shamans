@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cyylryrbnd0d5" path="res://assets/player/money_wizard.webp" id="3_75vfm"]
 [ext_resource type="Script" uid="uid://co21oecdbqhm" path="res://scenes/player/player_attack_marker.gd" id="3_hqtel"]
 [ext_resource type="Script" uid="uid://c680y7vu8wttm" path="res://scenes/player/stats.gd" id="3_i3pqv"]
-[ext_resource type="PackedScene" path="res://scenes/spells/boomerang.tscn" id="4_3j4b4"]
+[ext_resource type="PackedScene" uid="uid://dmjr2i4ngq6qd" path="res://scenes/spells/boomerang.tscn" id="4_3j4b4"]
 [ext_resource type="PackedScene" uid="uid://ctxi17gackdq6" path="res://scenes/spells/teleport.tscn" id="6_lgqa7"]
 [ext_resource type="PackedScene" uid="uid://cahrj3owxrhl4" path="res://scenes/spells/Meteor.tscn" id="6_myrg7"]
 [ext_resource type="Script" uid="uid://exnulbvcsgw7" path="res://scenes/player/states/state_machine.gd" id="7_0owmy"]
