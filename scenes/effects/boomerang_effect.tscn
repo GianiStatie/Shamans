@@ -50,7 +50,7 @@ animations = [{
 }]
 
 [node name="ExplosionEffect" unique_id=1538342731 instance=ExtResource("1_y2kby")]
-KNOCKBACK = 400.0
+KNOCKBACK = 225.0
 DAMAGE = 7.0
 
 [node name="ExplosionEffect" parent="." index="1" unique_id=174993004]
