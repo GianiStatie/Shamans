@@ -79,12 +79,7 @@ func _physics_process(delta: float) -> void:
 	if can_move:
 		var use_mouse = is_using_mouse and PLAYER_CONTROLLER == PLAYERS.PLAYER_1
 		var cast_angle = Utils.get_cast_angle(global_position, PLAYER_CONTROLLER, use_mouse)
-		var diff = wrapf(cast_angle - cast_marker.rotation, -PI, PI)
-		cast_marker.rotation += clamp(
-			diff,
-			-TURN_ACCELERATION * delta,
-			TURN_ACCELERATION * delta
-		)
+		cast_marker.rotation = cast_angle
 	else:
 		input_vector = Vector2.ZERO
 	
