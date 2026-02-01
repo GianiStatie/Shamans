@@ -29,6 +29,9 @@ var player_dead = false
 @onready var state_machine = $StateMachine
 @onready var animation_player = $AnimationPlayer
 @onready var stats = $Stats
+@export var playerNumber: int
+
+@export var main: Node2D
 
 # SFX
 @export var hurt_SFX: AudioStreamPlayer2D
@@ -183,4 +186,5 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 
 func _on_stats_player_health_zero() -> void:
 	player_dead = true
+	main.ShowWinScreen(playerNumber)
 	state_machine.transition_to("Death")

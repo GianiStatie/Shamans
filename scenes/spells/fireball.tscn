@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://77r4qgip07wh" path="res://scenes/spells/fireball.gd" id="1_olwj8"]
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_ql5qc"]
-[ext_resource type="PackedScene" uid="uid://76t3kkdo03ob" path="res://scenes/effects/explosion_effect.tscn" id="2_fnao3"]
+[ext_resource type="PackedScene" path="res://scenes/effects/explosion_effect.tscn" id="2_fnao3"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="2_vaqcd"]
 [ext_resource type="Texture2D" uid="uid://wd23b6bbytjk" path="res://assets/UI/icons/139.png" id="3_6cgh7"]
 [ext_resource type="AudioStream" uid="uid://c575fleo3iqic" path="res://assets/audio/hit5_softMedium_long.wav" id="5_6cgh7"]
@@ -56,7 +56,7 @@ CAST_DELAY = 0.3
 MAX_SPEED = 300.0
 KNOCKBACK = 0.0
 DAMAGE = 10.0
-COOLDOWN = 7.0
+COOLDOWN = 4.0
 ICON = ExtResource("3_6cgh7")
 on_hit_effect = ExtResource("2_fnao3")
 velocity_curve = SubResource("Curve_wk21o")

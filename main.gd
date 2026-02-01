@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var player_container = $PlayerContainer
 @onready var camera = $Camera2D
+@onready var Canvas = $CanvasLayer
+@export var lbl = Label
 
 var safe_camera_margin: Vector2
 var initial_zoom: Vector2
@@ -11,6 +13,9 @@ func _ready() -> void:
 	safe_camera_margin = (get_viewport_rect().size / 2) * 0.7
 	initial_zoom = camera.zoom
 
+func ShowWinScreen(playerNumber: int) -> void:
+	Canvas.visible = true
+	lbl.text = "Player " + str(playerNumber) + " wins!"
 
 func _physics_process(_delta: float) -> void:
 	var min_pos = Vector2.INF
@@ -29,3 +34,7 @@ func _physics_process(_delta: float) -> void:
 	var zoom_factor = min(ratio.x, ratio.y)
 	if zoom_factor < 1.0 and zoom_factor >= 0.5:
 		camera.zoom = camera.zoom.lerp(initial_zoom * zoom_factor, 0.5)
+
+
+func _on_button_pressed() -> void:
+	get_tree().reload_current_scene()
