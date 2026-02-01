@@ -67,13 +67,25 @@ func _input(event: InputEvent) -> void:
 		is_using_mouse = false
 	
 	for i in range(len(spell_scenes)):
+		if event.is_action_pressed("player_%s_taunt" % PLAYER_CONTROLLER):
+			state_machine.transition_to("Taunt")
+			continue
+		
 		if event.is_action_pressed("player_%s_spell_%s" % [PLAYER_CONTROLLER, i]):
 			if canvas_layer.is_button_on_cooldown(i):
 				continue
 				
 			canvas_layer.press_button(i)
 			var spell_scene = spell_scenes[i]
-			state_machine.transition_to("CastOffensive", {"spell_scene": spell_scene})
+			var inst = spell_scene.instantiate()
+			var cast_type = "CastOffensive"
+			match inst.TYPE:
+				Spell.SPELL_TYPES.OFFENSIVE: cast_type = "CastOffensive"
+				Spell.SPELL_TYPES.DEFENSIVE: cast_type = "CastDeffensive"
+				Spell.SPELL_TYPES.SMOKE: cast_type = "CastSmoke"
+				Spell.SPELL_TYPES.UTILITY: cast_type = "CastUtility"
+			inst.free()
+			state_machine.transition_to(cast_type, {"spell_scene": spell_scene})
 
 
 func _physics_process(delta: float) -> void:

@@ -33,6 +33,7 @@ collision_mask = 31
 script = ExtResource("2_vapmf")
 CAST_DELAY = 0.2
 COOLDOWN = 13.0
+TYPE = 1
 ICON = ExtResource("3_k5edl")
 
 [node name="Sprite2D" parent="." index="0" unique_id=64191743]

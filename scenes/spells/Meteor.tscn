@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://cahrj3owxrhl4"]
+[gd_scene format=3 uid="uid://c8qmd4d8r6v88"]
 
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_0wh1f"]
-[ext_resource type="Script" uid="uid://b518gungrry0w" path="res://scenes/spells/meteorCast.gd" id="2_jfmlb"]
-[ext_resource type="PackedScene" uid="uid://caf6gburf7aim" path="res://scenes/spells/MeteorIncoming.tscn" id="3_0wh1f"]
+[ext_resource type="Script" uid="uid://b518gungrry0w" path="res://scenes/spells/meteor.gd" id="2_jfmlb"]
+[ext_resource type="PackedScene" uid="uid://caf6gburf7aim" path="res://scenes/effects/MeteorIncoming.tscn" id="3_0wh1f"]
 [ext_resource type="Texture2D" uid="uid://t1gdh0d55id7" path="res://assets/UI/icons/6.png" id="3_t5d4b"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="4_ff6e3"]
 [ext_resource type="AudioStream" uid="uid://clecsnu7cusen" path="res://assets/audio/MeteorCast.wav" id="6_tta4p"]

@@ -1,44 +1,44 @@
 [gd_scene format=3 uid="uid://ckwnan2icfl6g"]
 
-[ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_0hy87"]
-[ext_resource type="Script" uid="uid://dbia6vbsk2umj" path="res://scenes/spells/fart.gd" id="2_6oxob"]
-[ext_resource type="Texture2D" uid="uid://b04ur8ds32sfq" path="res://assets/effects/Free Smoke Fx  Pixel 05.png" id="2_332s2"]
-[ext_resource type="Texture2D" uid="uid://c03kwaxd404mi" path="res://assets/UI/icons/92.png" id="3_uugu7"]
+[ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_kh1ol"]
+[ext_resource type="Script" path="res://scenes/spells/smoke.gd" id="2_befiw"]
+[ext_resource type="Texture2D" uid="uid://c03kwaxd404mi" path="res://assets/UI/icons/92.png" id="3_q5d82"]
+[ext_resource type="Texture2D" uid="uid://b04ur8ds32sfq" path="res://assets/effects/Free Smoke Fx  Pixel 05.png" id="4_338n3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6oxob"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(0, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uugu7"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(64, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ja86d"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(128, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b14ag"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(192, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv3c1"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(256, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wvi18"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(320, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kbesn"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(384, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8k6ey"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(448, 512, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8l0q"]
-atlas = ExtResource("2_332s2")
+atlas = ExtResource("4_338n3")
 region = Rect2(512, 512, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6oxob"]
@@ -77,21 +77,24 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_332s2"]
-radius = 52.009613
+radius = 96.0
 
-[node name="Fart" unique_id=1366827963 instance=ExtResource("1_0hy87")]
+[node name="Fart" unique_id=1366827963 instance=ExtResource("1_kh1ol")]
 collision_layer = 16
 collision_mask = 0
-script = ExtResource("2_6oxob")
-CAST_DELAY = 2.0
+script = ExtResource("2_befiw")
+CAST_DELAY = 1.2
+MAX_SPEED = 0.0
 KNOCKBACK = 200.0
 DAMAGE = 10.0
-ICON = ExtResource("3_uugu7")
+COOLDOWN = 5.0
+TYPE = 2
+ICON = ExtResource("3_q5d82")
 
 [node name="Sprite2D" parent="." index="0" unique_id=64191743]
 modulate = Color(0.67058825, 0.8666667, 0.39215687, 1)
 position = Vector2(0, 1.9999999)
-scale = Vector2(1.75, 1.75)
+scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_6oxob")
 frame = 3
 frame_progress = 0.71096843
