@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ctxi17gackdq6"]
+
+[ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_etu1k"]
+[ext_resource type="Script" uid="uid://vrpd8ktqykkc" path="res://scenes/spells/teleport.gd" id="2_6nbr6"]
+[ext_resource type="PackedScene" uid="uid://dv2x1pif3o6kr" path="res://scenes/effects/teleport_effect.tscn" id="3_glrv3"]
+[ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="3_s6xv8"]
+
+[sub_resource type="Curve" id="Curve_s6xv8"]
+_data = [Vector2(0.005494505, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_glrv3"]
+blend_mode = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkksn"]
+atlas = ExtResource("3_s6xv8")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhma1"]
+atlas = ExtResource("3_s6xv8")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrop2"]
+atlas = ExtResource("3_s6xv8")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4cjwf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkksn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhma1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrop2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Teleport" unique_id=1366827963 instance=ExtResource("1_etu1k")]
+script = ExtResource("2_6nbr6")
+CAST_DELAY = 0.1
+MAX_SPEED = 600.0
+on_hit_effect = ExtResource("3_glrv3")
+velocity_curve = SubResource("Curve_s6xv8")
+
+[node name="Sprite2D" parent="." index="0" unique_id=64191743]
+material = SubResource("CanvasItemMaterial_glrv3")
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_4cjwf")
+speed_scale = 1.5
+
+[node name="Timer" parent="." index="2" unique_id=260913630]
+wait_time = 0.2
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
