@@ -1,22 +1,28 @@
 class_name SpellButton extends MarginContainer
 
-var ON_COOLDOWN = false
-var COOLDOWN_TIME = 1.0
+var COOLDOWN = 1.0
+var ICON = null
+
 var cooldown_delta = 0.0
+var on_cooldown = false
+var is_ready = false
 
 @export var cooldown_indicator: TextureProgressBar
+@export var texture_rect: TextureRect
 
 
 func _ready() -> void:
+	update_stats(COOLDOWN, ICON)
 	reset()
+	is_ready = true
 
 
 func _physics_process(delta: float) -> void:
-	if not ON_COOLDOWN:
+	if not on_cooldown:
 		return
 	
 	cooldown_delta += delta
-	var cooldown_perc = cooldown_delta / COOLDOWN_TIME
+	var cooldown_perc = cooldown_delta / COOLDOWN
 	cooldown_indicator.value = cooldown_perc
 	
 	if cooldown_perc >= 1.0:
@@ -24,10 +30,18 @@ func _physics_process(delta: float) -> void:
 
 
 func reset() -> void:
-	ON_COOLDOWN = false
+	on_cooldown = false
 	cooldown_delta = 0.0
 	cooldown_indicator.value = 0.0
 
 
 func _on_pressed() -> void:
-	ON_COOLDOWN = true
+	on_cooldown = true
+
+
+func update_stats(cooldown, icon) -> void:
+	ICON = icon
+	COOLDOWN = cooldown
+	
+	if is_ready:
+		texture_rect.texture = ICON

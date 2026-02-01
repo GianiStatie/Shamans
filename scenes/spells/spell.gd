@@ -4,6 +4,8 @@ class_name Spell extends Area2D
 @export var MAX_SPEED: float = 0.0
 @export var KNOCKBACK: float = 0.0
 @export var DAMAGE: float = 0.0
+@export var COOLDOWN: float = 1.0
+@export var ICON: Texture2D
 @export var on_hit_effect: PackedScene
 @export var velocity_curve: Curve
 

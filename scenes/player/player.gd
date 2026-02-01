@@ -18,14 +18,13 @@ enum PLAYERS {
 
 # PLAYER SPELL BUTTONS
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
-@onready var spell_0_button: SpellButton = %SpellButton_0
+#@onready var spell_0_button: SpellButton = %SpellButton_0
 
 @onready var cast_marker = $AttackMarker
 @onready var flippable_container = $Flippable
 @onready var state_machine = $StateMachine
 @onready var animation_player = $AnimationPlayer
 @onready var stats = $Stats
-
 
 var input_vector := Vector2.ZERO
 var can_move := true
@@ -36,7 +35,7 @@ var dot_interval := 1.0
 
 
 func _ready() -> void:
-	canvas_layer.set_player_layout(PLAYER_CONTROLLER)
+	init_spell_ui()
 	var player_colors = Constants.player_colors["player_%s" % PLAYER_CONTROLLER]
 	self.material.set_shader_parameter("to_colors", player_colors)
 
@@ -46,9 +45,9 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("player_%s_spell_0" % PLAYER_CONTROLLER):
-		if not spell_0_button.ON_COOLDOWN:
-			spell_0_button._on_pressed()
-			state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
+		#if not spell_0_button.ON_COOLDOWN:
+			#spell_0_button._on_pressed()
+		state_machine.transition_to("CastOffensive", {"spell_scene": spell_0_scene})
 	elif event.is_action_pressed("player_%s_spell_1" % PLAYER_CONTROLLER):
 		state_machine.transition_to("CastDefensive", {"spell_scene": spell_1_scene})
 
@@ -85,6 +84,23 @@ func _physics_process(delta: float) -> void:
 	if dot_delta >= dot_interval:
 		dot_delta = 0.0
 		stats.health -= dot
+
+
+func init_spell_ui() -> void:
+	var spell_info = []
+	for spell_scene in [spell_0_scene, spell_1_scene]:
+		if spell_scene == null:
+			break
+		
+		var inst = spell_scene.instantiate()
+		spell_info.append({
+			"icon": inst.ICON,
+			"cooldown": inst.COOLDOWN
+		})
+		inst.free()
+	
+	print(spell_info)
+	canvas_layer.set_player_layout(PLAYER_CONTROLLER, spell_info)
 
 
 func cast_spell(spell_scene: PackedScene):

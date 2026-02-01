@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_ql5qc"]
 [ext_resource type="PackedScene" uid="uid://d0xutuxb8o0at" path="res://scenes/effects/explosion_effect.tscn" id="2_fnao3"]
 [ext_resource type="Texture2D" uid="uid://cao5deslsp4fd" path="res://assets/spells/Fireball.webp" id="2_vaqcd"]
+[ext_resource type="Texture2D" uid="uid://wd23b6bbytjk" path="res://assets/UI/icons/139.png" id="3_6cgh7"]
 
 [sub_resource type="Curve" id="Curve_wk21o"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.17869419, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.32530767), 0.0, 0.0, 0, 0]
@@ -47,6 +48,7 @@ script = ExtResource("1_olwj8")
 CAST_DELAY = 0.6
 MAX_SPEED = 300.0
 DAMAGE = 5.0
+ICON = ExtResource("3_6cgh7")
 on_hit_effect = ExtResource("2_fnao3")
 velocity_curve = SubResource("Curve_wk21o")
 

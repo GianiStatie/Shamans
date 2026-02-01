@@ -15,8 +15,7 @@
 [ext_resource type="Script" uid="uid://cn0p5156kh1jb" path="res://scenes/player/states/hit.gd" id="11_je7p5"]
 [ext_resource type="Texture2D" uid="uid://ktshf8t4vg2d" path="res://assets/player/large_shadow.png" id="15_fcs02"]
 [ext_resource type="Script" uid="uid://cjbbvxpf3d85g" path="res://scenes/UI/player_spell_canvas.gd" id="15_kvlxm"]
-[ext_resource type="Texture2D" uid="uid://wd23b6bbytjk" path="res://assets/UI/icons/139.png" id="15_myrg7"]
-[ext_resource type="Script" uid="uid://c0v53vgkhy5uy" path="res://scenes/UI/spell_button.gd" id="16_myrg7"]
+[ext_resource type="PackedScene" uid="uid://berq6h2fenavr" path="res://scenes/UI/spell_button.tscn" id="16_myrg7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gx1jg"]
 resource_local_to_scene = true
@@ -137,13 +136,6 @@ _data = {
 &"RESET": SubResource("Animation_5gtgg")
 }
 
-[sub_resource type="Gradient" id="Gradient_fcs02"]
-offsets = PackedFloat32Array(0.9892704)
-colors = PackedColorArray(6.7885404, 6.7885404, 6.7885404, 0.56700003)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_myrg7"]
-gradient = SubResource("Gradient_fcs02")
-
 [node name="Player" type="CharacterBody2D" unique_id=1304335232]
 material = SubResource("ShaderMaterial_gx1jg")
 collision_mask = 65
@@ -239,34 +231,32 @@ libraries/ = SubResource("AnimationLibrary_5gtgg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1152906301]
 script = ExtResource("15_kvlxm")
+button_scene = ExtResource("16_myrg7")
 
-[node name="SpellButton_0" type="MarginContainer" parent="CanvasLayer" unique_id=857127591 node_paths=PackedStringArray("cooldown_indicator")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(32, 32)
+[node name="PlayerContainer_0" type="MarginContainer" parent="CanvasLayer" unique_id=1697860130]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
-script = ExtResource("16_myrg7")
-cooldown_indicator = NodePath("Cover")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellButton_0" unique_id=1193414890]
-show_behind_parent = true
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerContainer_0" unique_id=1835947270]
 layout_mode = 2
-texture = ExtResource("15_myrg7")
-expand_mode = 1
 
-[node name="Cover" type="TextureProgressBar" parent="CanvasLayer/SpellButton_0" unique_id=200686158]
+[node name="SpellButton" parent="CanvasLayer/PlayerContainer_0/HBoxContainer" unique_id=17159715 instance=ExtResource("16_myrg7")]
 layout_mode = 2
-mouse_filter = 2
-max_value = 1.0
-step = 0.01
-value = 0.35
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = SubResource("GradientTexture1D_myrg7")
+
+[node name="PlayerContainer_1" type="MarginContainer" parent="CanvasLayer" unique_id=1851975213]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
