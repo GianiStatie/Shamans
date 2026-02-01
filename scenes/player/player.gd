@@ -32,6 +32,9 @@ var is_ready = false
 @onready var stats = $Stats
 @onready var spell_ui_0 = %SpellSelect_0
 @onready var spell_ui_1 = %SpellSelect_1
+@export var playerNumber: int
+
+@export var main: Node2D
 
 # SFX
 @export var hurt_SFX: AudioStreamPlayer2D
@@ -75,6 +78,10 @@ func _input(event: InputEvent) -> void:
 		is_using_mouse = false
 	
 	for i in range(len(spell_scenes)):
+		if event.is_action_pressed("player_%s_taunt" % PLAYER_CONTROLLER):
+			state_machine.transition_to("Taunt")
+			continue
+		
 		if event.is_action_pressed("player_%s_spell_%s" % [PLAYER_CONTROLLER, i]):
 			if canvas_layer.is_button_on_cooldown(i):
 				continue
@@ -83,11 +90,13 @@ func _input(event: InputEvent) -> void:
 			var spell_scene = spell_scenes[i]
 			var inst = spell_scene.instantiate()
 			var cast_type = "CastOffensive"
+			
 			match inst.TYPE:
 				Spell.SPELL_TYPES.OFFENSIVE: cast_type = "CastOffensive"
-				Spell.SPELL_TYPES.DEFENSIVE: cast_type = "CastDeffensive"
+				Spell.SPELL_TYPES.DEFENSIVE: cast_type = "CastDefensive"
 				Spell.SPELL_TYPES.SMOKE: cast_type = "CastSmoke"
 				Spell.SPELL_TYPES.UTILITY: cast_type = "CastUtility"
+			
 			inst.free()
 			state_machine.transition_to(cast_type, {"spell_scene": spell_scene})
 
@@ -180,6 +189,7 @@ func play_sound() -> void:
 func play_tauntSFX() -> void:
 	taunt_SFX.play()
 
+
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Spell") or area.is_in_group("Explosion"):
 		if area.source == self:
@@ -202,6 +212,7 @@ func _on_hurtbox_body_exited(body: Node2D) -> void:
 
 func _on_stats_player_health_zero() -> void:
 	player_dead = true
+	main.ShowWinScreen(playerNumber)
 	state_machine.transition_to("Death")
 
 

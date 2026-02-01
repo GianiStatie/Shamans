@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bi7q8p7xcupj0"]
+[gd_scene format=3 uid="uid://cwf3mpwx5mhh6"]
 
 [ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_0wh1f"]
 [ext_resource type="Script" uid="uid://b518gungrry0w" path="res://scenes/spells/meteor.gd" id="2_jfmlb"]
@@ -51,7 +51,7 @@ stream_0/stream = ExtResource("6_tta4p")
 script = ExtResource("2_jfmlb")
 CAST_DELAY = 0.15
 MAX_SPEED = 900.0
-COOLDOWN = 12.0
+COOLDOWN = 9.0
 ICON = ExtResource("3_t5d4b")
 on_hit_effect = ExtResource("3_0wh1f")
 velocity_curve = SubResource("Curve_t5d4b")
