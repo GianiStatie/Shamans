@@ -64,6 +64,10 @@ func _input(event: InputEvent) -> void:
 		is_using_mouse = false
 	
 	for i in range(len(spell_scenes)):
+		if event.is_action_pressed("player_%s_taunt" % PLAYER_CONTROLLER):
+			state_machine.transition_to("Taunt")
+			continue
+		
 		if event.is_action_pressed("player_%s_spell_%s" % [PLAYER_CONTROLLER, i]):
 			if canvas_layer.is_button_on_cooldown(i):
 				continue

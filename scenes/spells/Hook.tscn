@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dj27cut2j6bk4"]
+
+[ext_resource type="PackedScene" uid="uid://bn4627jhgsbhs" path="res://scenes/spells/spell.tscn" id="1_27yjl"]
+[ext_resource type="Script" uid="uid://77r4qgip07wh" path="res://scenes/spells/fireball.gd" id="2_4p7g4"]
+[ext_resource type="Texture2D" uid="uid://wd23b6bbytjk" path="res://assets/UI/icons/139.png" id="3_imkur"]
+[ext_resource type="Texture2D" uid="uid://xs6f0jcad4fx" path="res://assets/spells/hook.png" id="5_27yjl"]
+[ext_resource type="AudioStream" uid="uid://c575fleo3iqic" path="res://assets/audio/hit5_softMedium_long.wav" id="6_1ecie"]
+
+[sub_resource type="Curve" id="Curve_wk21o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.17869419, 1), 0.0, 0.0, 0, 0, Vector2(0.7847534, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.48969156), -4.675209, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vaqcd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_27yjl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wk21o"]
+radius = 12.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bhjfn"]
+random_pitch = 1.6026951
+streams_count = 1
+stream_0/stream = ExtResource("6_1ecie")
+
+[node name="Hook" unique_id=1366827963 instance=ExtResource("1_27yjl")]
+collision_layer = 16
+collision_mask = 95
+script = ExtResource("2_4p7g4")
+CAST_DELAY = 0.3
+MAX_SPEED = 300.0
+KNOCKBACK = -250.0
+DAMAGE = 10.0
+COOLDOWN = 7.0
+ICON = ExtResource("3_imkur")
+velocity_curve = SubResource("Curve_wk21o")
+
+[node name="Sprite2D" parent="." index="0" unique_id=64191743]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_vaqcd")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1914504540]
+shape = SubResource("CircleShape2D_wk21o")
+
+[node name="Timer" parent="." index="2" unique_id=260913630]
+wait_time = 1.45
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="3" unique_id=1450166533]
+stream = SubResource("AudioStreamRandomizer_bhjfn")
+volume_db = 5.0
+pitch_scale = 4.0
+autoplay = true
+bus = &"SFX"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
