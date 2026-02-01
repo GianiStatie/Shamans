@@ -28,6 +28,8 @@ func handle_passed_spell(spell_scene):
 
 
 func exit() -> void:
+	owner.set_can_move(true)
+	owner.set_can_cast(true)
 	owner.animation_player.speed_scale = 1.0
 
 
@@ -40,6 +42,4 @@ func _on_pre_cast_timer_ended() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == self.name:
 		_on_pre_cast_timer_ended()
-		owner.set_can_move(true)
-		owner.set_can_cast(true)
 		state_machine.transition_to("Idle")

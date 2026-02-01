@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://kg1siaalllt0" path="res://assets/terrain/MagmaTileAnimation.png" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://drcyustd2cw01" path="res://assets/terrain/floorTileset.webp" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://bcu27hkdc0k48" path="res://tilemap_arena.gd" id="5_7mycd"]
+[ext_resource type="AudioStream" uid="uid://bf8e5ff7rgf04" path="res://assets/audio/Vilified (2012).mp3" id="7_272bh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7mycd"]
 texture = ExtResource("4_lquwl")
@@ -39,14 +40,14 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_7mycd")
 sources/1 = SubResource("TileSetAtlasSource_272bh")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
 resource_local_to_scene = true
 shader = ExtResource("2_h2yge")
 shader_parameter/from_colors = PackedColorArray(0.9843137, 0.23921569, 0.21176471, 1, 0.7607843, 0.19607843, 0.1764706, 1, 0.2, 0.09411765, 0.09019608, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/to_colors = PackedColorArray(0.8784314, 0.011764706, 0.003921569, 1, 0.54509807, 0, 0.007843138, 1, 0.003921569, 0.003921569, 0.003921569, 1, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/tolerance = 0.01
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek77"]
 resource_local_to_scene = true
 shader = ExtResource("2_h2yge")
 shader_parameter/from_colors = PackedColorArray(0.9843137, 0.23921569, 0.21176471, 1, 0.7607843, 0.19607843, 0.1764706, 1, 0.2, 0.09411765, 0.09019608, 1, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -68,12 +69,12 @@ autostart = true
 y_sort_enabled = true
 
 [node name="Player" parent="PlayerContainer" unique_id=1304335232 instance=ExtResource("1_ig7tw")]
-material = SubResource("ShaderMaterial_7mycd")
+material = SubResource("ShaderMaterial_5vw27")
 position = Vector2(-273, 204)
 TURN_ACCELERATION = 100.0
 
 [node name="Player2" parent="PlayerContainer" unique_id=783978056 instance=ExtResource("1_ig7tw")]
-material = SubResource("ShaderMaterial_272bh")
+material = SubResource("ShaderMaterial_kek77")
 position = Vector2(178, 212)
 PLAYER_CONTROLLER = 1
 
@@ -86,5 +87,11 @@ drag_left_margin = 0.3
 drag_top_margin = 0.3
 drag_right_margin = 0.3
 drag_bottom_margin = 0.3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=14875040]
+stream = ExtResource("7_272bh")
+volume_db = -35.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="timeout" from="TileMapLayer/Timer" to="TileMapLayer" method="_on_shrink_timer_timeout"]

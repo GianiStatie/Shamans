@@ -12,4 +12,5 @@ func exit() -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	owner.set_can_move(true)
 	state_machine.transition_to("Idle")
